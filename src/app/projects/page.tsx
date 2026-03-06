@@ -15,8 +15,8 @@ export default async function ProjectsPage() {
 
   try {
     projects = await getProjects();
-  } catch {
-    // Strapi not available
+  } catch (e) {
+    if (process.env.NODE_ENV !== 'production') console.error('[Strapi]', e);
   }
 
   return (

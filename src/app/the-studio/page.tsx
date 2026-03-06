@@ -7,22 +7,20 @@ import StudioDescriptionSection from '@/components/studio/StudioDescriptionSecti
 import StudioTeamSection from '@/components/studio/StudioTeamSection';
 import StudioWorkshopSection from '@/components/studio/StudioWorkshopSection';
 import { getStudio } from '@/lib/strapi';
-import { SITE_NAME } from '@/lib/site';
+import { SITE_NAME, PAGE_BG, COMING_SOON_MESSAGE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'The Studio',
-  description: `Learn about ${SITE_NAME}, our team, philosophy and creative process behind our Barcelona interior design studio.`,
+  description: `Learn about ${SITE_NAME}, our team, philosophy and creative process behind our Barcelona interior design studio.`
 };
-
-const BG = '#F5F4F1';
 
 export default async function StudioPage() {
   let studio = null;
 
   try {
     studio = await getStudio();
-  } catch {
-    // Strapi not available
+  } catch (e) {
+    if (process.env.NODE_ENV !== 'production') console.error('[Strapi]', e);
   }
 
   return (
@@ -31,7 +29,7 @@ export default async function StudioPage() {
         <NostLogo />
       </div>
 
-      <NavBar breadcrumb="The Studio" pageBackground={BG} />
+      <NavBar breadcrumb="The Studio" pageBackground={PAGE_BG} />
 
       <main className="flex-1 pb-24" style={{ paddingTop: 120 }}>
         {studio ? (
@@ -57,7 +55,7 @@ export default async function StudioPage() {
         ) : (
           <div className="flex items-center justify-center h-64">
             <span className="text-navy-muted text-[17px] uppercase tracking-widest">
-              Content coming soon
+              {COMING_SOON_MESSAGE}
             </span>
           </div>
         )}

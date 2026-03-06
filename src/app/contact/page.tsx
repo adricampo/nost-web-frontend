@@ -4,22 +4,20 @@ import NavBar from '@/components/layout/NavBar';
 import FooterWrapper from '@/components/layout/FooterWrapper';
 import { getContactInfo } from '@/lib/strapi';
 import { socialHandle } from '@/lib/utils';
-import { SITE_NAME } from '@/lib/site';
+import { SITE_NAME, PAGE_BG } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Contact',
   description: `Get in touch with ${SITE_NAME}. Contact us by phone, email or through our social media channels.`,
 };
 
-const BG = '#F5F4F1';
-
 export default async function ContactPage() {
   let contact = null;
 
   try {
     contact = await getContactInfo();
-  } catch {
-    // Strapi not available
+  } catch (e) {
+    if (process.env.NODE_ENV !== 'production') console.error('[Strapi]', e);
   }
 
   const fields = contact
@@ -44,7 +42,7 @@ export default async function ContactPage() {
         <NostLogo />
       </div>
 
-      <NavBar breadcrumb="Contact" pageBackground={BG} />
+      <NavBar breadcrumb="Contact" pageBackground={PAGE_BG} />
 
       <main
         className="flex-1 pb-16"

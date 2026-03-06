@@ -6,8 +6,8 @@ export default async function FooterWrapper() {
 
   try {
     contact = await getContactInfo();
-  } catch {
-    // Strapi not available
+  } catch (e) {
+    if (process.env.NODE_ENV !== 'production') console.error('[Strapi]', e);
   }
 
   const socials = [

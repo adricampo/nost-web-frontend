@@ -13,8 +13,9 @@ interface NavBarProps {
 }
 
 const TRANSITION = { duration: 0.22, ease: [0.25, 0, 0, 1] } as const;
-
-// Shared button reset classes used for MENU/CLOSE/INFO buttons
+const LABEL_MENU = 'Menu';
+const LABEL_CLOSE = 'Close';
+const LABEL_MORE_INFO = '[+] Info';
 const BTN_BASE =
   'p-0 m-0 border-0 bg-transparent appearance-none uppercase tracking-widest cursor-pointer leading-3 text-xs';
 
@@ -32,16 +33,15 @@ export default function NavBar({
     <nav
       className="fixed top-0 left-0 right-0 z-[60] grid grid-cols-[50%_1fr] items-stretch pointer-events-none font-apercu"
       style={{
-        padding: pageBackground ? `28px 36px ${paddingBottom ?? 65}px` : '28px 36px 0',
+        padding: pageBackground
+          ? `28px 36px ${paddingBottom ?? 65}px`
+          : '28px 36px 0',
         background: pageBackground ?? 'transparent'
       }}
     >
-      {/* Left: empty (columns 1–6) */}
       <div />
 
-      {/* Right: breadcrumb/slot at column 7 + MENU at far right */}
       <div className="pointer-events-auto flex justify-between items-start h-full">
-        {/* Breadcrumb / center slot — starts at column 7 (50vw) */}
         <div className="flex items-start">
           {centerSlot ??
             (breadcrumb ? (
@@ -51,13 +51,13 @@ export default function NavBar({
             ) : null)}
         </div>
 
-        {/* MENU/CLOSE + optional INFO button */}
         <div
           className={`flex ${
-            showInfoButton ? 'flex-col justify-between h-full' : 'flex-row gap-6 items-end'
+            showInfoButton
+              ? 'flex-col justify-between h-full'
+              : 'flex-row gap-6 items-end'
           }`}
         >
-          {/* MENU / CLOSE toggle */}
           <div className="relative w-[52px] h-3">
             <AnimatePresence mode="wait">
               {!isOpen ? (
@@ -68,7 +68,7 @@ export default function NavBar({
                   onClick={toggle}
                   className={`${BTN_BASE} absolute right-0 top-0`}
                 >
-                  Menu
+                  {LABEL_MENU}
                 </motion.button>
               ) : (
                 <motion.button
@@ -80,19 +80,18 @@ export default function NavBar({
                   onClick={toggle}
                   className={`${BTN_BASE} absolute right-0 top-0 text-white`}
                 >
-                  Close
+                  {LABEL_CLOSE}
                 </motion.button>
               )}
             </AnimatePresence>
           </div>
 
-          {/* [+] INFO — shown below MENU on project detail pages */}
           {showInfoButton && (
             <button
               onClick={onInfoClick}
               className={`${BTN_BASE} hover:opacity-70 transition-opacity`}
             >
-              [+] Info
+              {LABEL_MORE_INFO}
             </button>
           )}
         </div>

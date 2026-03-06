@@ -27,7 +27,6 @@ const SIZES: Record<GalleryImage['layout'], string> = {
   xl: '(max-width: 768px) 100vw, calc(100vw - 72px)'
 };
 
-// Each row unit equals one column width: (100vw - 72px padding - 11×16px gaps) / 12
 const GRID_AUTO_ROWS = 'calc((100vw - 72px - 176px) / 12)';
 
 function blockTextAlignStyle(align?: string): React.CSSProperties {

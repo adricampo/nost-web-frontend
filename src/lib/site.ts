@@ -1,4 +1,10 @@
 export const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? 'Nost Interiors';
+export const SITE_SHORT_NAME = process.env.NEXT_PUBLIC_SITE_SHORT_NAME ?? 'Nost';
 export const SITE_TAGLINE = process.env.NEXT_PUBLIC_SITE_TAGLINE ?? 'Barcelona Interior Design Studio';
 export const SITE_DESCRIPTION = process.env.NEXT_PUBLIC_SITE_DESCRIPTION ?? 'Barcelona-based interior design studio specialising in residential, corporate and hospitality projects.';
 export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'info@bynost.com';
+export const PAGE_BG = '#F5F4F1';
+export const FOOTER_BACK_TO_TOP = '↑ Back to top';
+export const NO_GALLERY_MESSAGE = 'No gallery images yet.';
+export const IMAGE_COPYRIGHT = 'All the images are protected by the author. If you want to use the images please contact';
+export const COMING_SOON_MESSAGE = 'Content coming soon';

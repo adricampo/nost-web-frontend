@@ -6,6 +6,7 @@ import NostLogo from '@/components/layout/NostLogo';
 import ProjectGallery from '@/components/projects/ProjectGallery';
 import ProjectInfoPanel from '@/components/projects/ProjectInfoPanel';
 import type { Project } from '@/lib/types';
+import { NO_GALLERY_MESSAGE } from '@/lib/site';
 
 interface ProjectNavCenterSlotProps {
   category: Project['category'];
@@ -68,7 +69,7 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
         {project.galleryBlocks && project.galleryBlocks.length > 0 ? (
           <ProjectGallery blocks={project.galleryBlocks} />
         ) : (
-          <p className="text-navy-muted text-[17px]">No gallery images yet.</p>
+          <p className="text-navy-muted text-[17px]">{NO_GALLERY_MESSAGE}</p>
         )}
       </main>
 

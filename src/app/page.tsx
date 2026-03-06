@@ -12,8 +12,8 @@ export default async function LandingPage() {
     if (landing.heroImages && landing.heroImages.length > 0) {
       heroImageUrl = getStrapiImageUrl(landing.heroImages[0].url);
     }
-  } catch {
-    // Strapi not available — no hero image
+  } catch (e) {
+    if (process.env.NODE_ENV !== 'production') console.error('[Strapi]', e);
   }
 
   return (
