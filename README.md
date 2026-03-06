@@ -23,45 +23,45 @@ Built with Next.js 15 and connected to a Strapi v4 CMS backend for all dynamic c
 
 ```
 src/
-├── app/                        # Next.js App Router pages
-│   ├── page.tsx                # Landing — full-screen hero image
+├── app/                        
+│   ├── page.tsx                
 │   ├── projects/
-│   │   ├── page.tsx            # Projects listing grid
-│   │   └── [slug]/page.tsx     # Project detail
-│   ├── the-studio/page.tsx     # Studio — team, description, workshop
-│   ├── contact/page.tsx        # Contact info
-│   ├── fonts/                  # Self-hosted font files (woff/woff2)
-│   ├── layout.tsx              # Root layout — fonts, metadata, providers
-│   ├── globals.css             # Tailwind base + CSS variables
-│   └── icon.tsx                # App icon
+│   │   ├── page.tsx            
+│   │   └── [slug]/page.tsx     
+│   ├── the-studio/page.tsx     
+│   ├── contact/page.tsx        
+│   ├── fonts/                  
+│   ├── layout.tsx              
+│   ├── globals.css             
+│   └── icon.tsx                
 │
 ├── components/
 │   ├── layout/
-│   │   ├── NavBar.tsx          # Fixed top nav — breadcrumb, center slot, menu/info buttons
-│   │   ├── MenuOverlay.tsx     # Slide-in navigation panel
-│   │   ├── Footer.tsx          # Footer — back to top, copyright, social links
-│   │   ├── FooterWrapper.tsx   # Server wrapper — fetches contact info for footer
-│   │   ├── NostLogo.tsx        # SVG logo component
-│   │   └── Providers.tsx       # Client providers — menu state context
+│   │   ├── NavBar.tsx          
+│   │   ├── MenuOverlay.tsx     
+│   │   ├── Footer.tsx          
+│   │   ├── FooterWrapper.tsx   
+│   │   ├── NostLogo.tsx        
+│   │   └── Providers.tsx       
 │   │
 │   ├── projects/
-│   │   ├── ProjectsPageClient.tsx   # Projects listing with responsive grid
-│   │   ├── ProjectCard.tsx          # Project thumbnail card
-│   │   ├── ProjectDetailClient.tsx  # Project detail layout + info panel trigger
-│   │   ├── ProjectGallery.tsx       # Gallery blocks renderer
-│   │   └── ProjectInfoPanel.tsx     # Slide-in project info panel
+│   │   ├── ProjectsPageClient.tsx   
+│   │   ├── ProjectCard.tsx          
+│   │   ├── ProjectDetailClient.tsx  
+│   │   ├── ProjectGallery.tsx       
+│   │   └── ProjectInfoPanel.tsx     
 │   │
 │   └── studio/
-│       ├── StudioIntroSection.tsx        # Hero image + tagline
-│       ├── StudioDescriptionSection.tsx  # Two-column description text
-│       ├── StudioTeamSection.tsx         # Team members grid
-│       └── StudioWorkshopSection.tsx     # Workshop/atelier images
+│       ├── StudioIntroSection.tsx        
+│       ├── StudioDescriptionSection.tsx  
+│       ├── StudioTeamSection.tsx         
+│       └── StudioWorkshopSection.tsx     
 │
 └── lib/
-    ├── site.ts     # Site-wide constants (name, colours, UI strings)
-    ├── strapi.ts   # Strapi API client — all data fetching functions
-    ├── types.ts    # TypeScript interfaces for all Strapi content types
-    └── utils.ts    # Utility helpers (e.g. social handle formatting)
+    ├── site.ts     
+    ├── strapi.ts   
+    ├── types.ts    
+    └── utils.ts    
 ```
 
 ---
@@ -87,35 +87,6 @@ Each project has an array of **GalleryBlocks**. Every block contains:
 - `blockText` — optional text shown below the image grid
 - `blockTextAlign` — text alignment (`left` / `center` / `right`)
 
-### Populate Queries
-
-Strapi's `populate=*` only does shallow population — it does not populate media inside nested components. For nested component media, explicit field paths are required:
-
-```
-/projects?populate[galleryBlocks][fields][0]=blockText
-         &populate[galleryBlocks][fields][1]=blockTextAlign
-         &populate[galleryBlocks][populate][images][populate]=*
-```
-
----
-
-## Environment Variables
-
-Copy `.env.local.example` to `.env.local` and fill in the values:
-
-```bash
-# Strapi backend URL
-NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
-
-# Site identity
-NEXT_PUBLIC_SITE_NAME=Nost Interiors
-NEXT_PUBLIC_SITE_SHORT_NAME=Nost
-NEXT_PUBLIC_SITE_TAGLINE=Barcelona Interior Design Studio
-NEXT_PUBLIC_SITE_DESCRIPTION=Barcelona-based interior design studio...
-NEXT_PUBLIC_CONTACT_EMAIL=info@bynost.com
-```
-
----
 
 ## Getting Started
 
