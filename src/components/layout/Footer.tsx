@@ -16,43 +16,39 @@ export default function Footer({ socials = [] }: FooterProps) {
 
   return (
     <footer
+      className="grid items-center font-apercu"
       style={{
-        display: 'grid',
-        gridTemplateColumns: 'calc(50% - 36px) 1fr',
-        alignItems: 'center',
-        padding: '28px 36px',
-        fontFamily: 'var(--font-cormorant), serif',
+        gridTemplateColumns: '50% 1fr',
         fontSize: 12,
+        padding: '36px'
       }}
     >
       <button
         onClick={scrollToTop}
-        style={{ color: '#13136B', cursor: 'pointer', letterSpacing: '0.04em', textAlign: 'left' }}
-        className="hover:opacity-60 transition-opacity"
+        className="hover:opacity-60 transition-opacity cursor-pointer tracking-[0.04em] text-left"
       >
         ↑ Back to top
       </button>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ color: '#13136B', letterSpacing: '0.04em' }}>©Nost</span>
+      <div className="flex justify-between items-center">
+        <span className="tracking-[0.04em]">©Nost</span>
 
         <div>
           {socials.map(({ label, href }, i) => (
-            <span key={label} style={{ color: '#13136B' }}>
+            <span key={label}>
               {href ? (
                 <a
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: '#13136B' }}
                   className="hover:opacity-60 transition-opacity"
                 >
                   {label}
                 </a>
               ) : (
-                <span style={{ color: '#13136B' }}>{label}</span>
+                <span>{label}</span>
               )}
-              {i < socials.length - 1 && <span style={{ color: '#13136B' }}>, </span>}
+              {i < socials.length - 1 && <span>, </span>}
             </span>
           ))}
         </div>

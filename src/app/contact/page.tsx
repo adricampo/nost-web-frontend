@@ -47,8 +47,8 @@ export default async function ContactPage() {
       <NavBar breadcrumb="Contact" pageBackground={BG} />
 
       <main
-        className="flex-1 pb-16 pt-[22vh]"
-        style={{ paddingLeft: 'calc(50% - 36px)', paddingRight: 36 }}
+        className="flex-1 pb-16"
+        style={{ paddingLeft: '50vw', paddingRight: 36, paddingTop: '22vh' }}
       >
         <div className="flex flex-col gap-[18vh]">
 
@@ -63,7 +63,7 @@ export default async function ContactPage() {
               {fields.map(({ label, value, href }) => (
                 <div key={label} className="flex items-baseline">
                   <span
-                    className="text-base leading-[37px] text-navy-muted uppercase tracking-[0.08em] w-[110px] shrink-0"
+                    className="text-base leading-[37px] w-[110px] shrink-0"
                   >
                     {label}:
                   </span>

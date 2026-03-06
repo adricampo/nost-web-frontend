@@ -1,28 +1,51 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
+  /* Brand colors */
   --color-navy: #13136B;
   --color-bg: #F5F4F1;
   --color-navy-muted: #9999BB;
 
-  /* Font family */
-  --font-family-cormorant: var(--font-cormorant), serif;
+  /* Brand fonts */
+  --font-stanley: var(--font-stanley), serif;
+  --font-apercu: var(--font-apercu), sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-navy);
+    font-family: var(--font-stanley);
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+/* Projects grid: big/small alternating pattern per breakpoint */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .projects-grid > *:nth-child(2n) { align-self: start; }
+  .projects-grid > *:nth-child(2n) .project-card-image { aspect-ratio: 3/2; }
 }
 
-body {
-  background-color: #F5F4F1;
-  color: #13136B;
-  font-family: var(--font-cormorant), serif;
-  -webkit-font-smoothing: antialiased;
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .projects-grid > *:nth-child(3n+2) { align-self: start; }
+  .projects-grid > *:nth-child(3n+2) .project-card-image { aspect-ratio: 3/2; }
+}
+
+@media (min-width: 1280px) {
+  .projects-grid > *:nth-child(4n+2),
+  .projects-grid > *:nth-child(4n+4) { align-self: start; }
+  .projects-grid > *:nth-child(4n+2) .project-card-image,
+  .projects-grid > *:nth-child(4n+4) .project-card-image { aspect-ratio: 3/2; }
 }

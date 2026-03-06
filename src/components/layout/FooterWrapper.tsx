@@ -2,20 +2,19 @@ import Footer from './Footer';
 import { getContactInfo } from '@/lib/strapi';
 
 export default async function FooterWrapper() {
-  const socials = [
-    { label: 'Instagram', href: undefined as string | undefined },
-    { label: 'Linkedin', href: undefined as string | undefined },
-    { label: 'Pinterest', href: undefined as string | undefined },
-  ];
+  let contact = null;
 
   try {
-    const contact = await getContactInfo();
-    if (contact.instagram) socials[0].href = contact.instagram;
-    if (contact.linkedin) socials[1].href = contact.linkedin;
-    if (contact.pinterest) socials[2].href = contact.pinterest;
+    contact = await getContactInfo();
   } catch {
     // Strapi not available
   }
+
+  const socials = [
+    { label: 'Instagram', href: contact?.instagram },
+    { label: 'Linkedin', href: contact?.linkedin },
+    { label: 'Pinterest', href: contact?.pinterest },
+  ];
 
   return <Footer socials={socials} />;
 }

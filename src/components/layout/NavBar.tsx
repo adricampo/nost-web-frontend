@@ -6,175 +6,94 @@ import { useMenu } from './Providers';
 interface NavBarProps {
   breadcrumb?: string;
   centerSlot?: React.ReactNode;
-  projectCode?: string;
-  projectTitle?: string;
   showInfoButton?: boolean;
   onInfoClick?: () => void;
   pageBackground?: string;
 }
 
+const TRANSITION = { duration: 0.22, ease: [0.25, 0, 0, 1] } as const;
+
+// Shared button reset classes used for MENU/CLOSE/INFO buttons
+const BTN_BASE =
+  'p-0 m-0 border-0 bg-transparent appearance-none uppercase tracking-widest cursor-pointer leading-3 text-xs';
+
 export default function NavBar({
   breadcrumb,
   centerSlot,
-  projectCode,
-  projectTitle,
   showInfoButton,
   onInfoClick,
-  pageBackground,
+  pageBackground
 }: NavBarProps) {
   const { toggle, isOpen } = useMenu();
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 pointer-events-none"
+      className="fixed top-0 left-0 right-0 z-[60] grid grid-cols-[50%_1fr] items-start pointer-events-none font-apercu"
       style={{
-        zIndex: 60,
-        display: 'grid',
-        gridTemplateColumns: '1fr max-content 1fr',
-        alignItems: 'start',
         padding: pageBackground ? '28px 36px 74px' : '28px 36px 0',
-        background: pageBackground ?? 'transparent',
+        background: pageBackground ?? 'transparent'
       }}
     >
-      {/* Left: project info (only when projectTitle exists) */}
-      <div className="pointer-events-auto" style={{ display: 'flex', alignItems: 'flex-start' }}>
-        {projectTitle && (
-          <div className="flex flex-col gap-1">
-            {breadcrumb && (
-              <span
-                className="text-[#9999BB] uppercase tracking-widest text-[12px]"
-                style={{ fontFamily: 'var(--font-cormorant), serif', lineHeight: '12px' }}
-              >
+      {/* Left: empty (columns 1–6) */}
+      <div />
+
+      {/* Right: breadcrumb/slot at column 7 + MENU at far right */}
+      <div className="pointer-events-auto flex justify-between items-start">
+        {/* Breadcrumb / center slot — starts at column 7 (50vw) */}
+        <div className="flex items-start">
+          {centerSlot ??
+            (breadcrumb ? (
+              <span className="pointer-events-none uppercase tracking-widest leading-3 text-xs">
                 {breadcrumb}
               </span>
-            )}
-            <div className="flex items-baseline gap-3">
-              {projectCode && (
-                <span
-                  className="text-[#9999BB] text-[12px] uppercase tracking-widest"
-                  style={{ fontFamily: 'var(--font-cormorant), serif' }}
-                >
-                  [{projectCode}]
-                </span>
-              )}
-              <span
-                className="text-[#13136B] text-[34px] leading-9 font-light"
-                style={{ fontFamily: 'var(--font-cormorant), serif' }}
-              >
-                {projectTitle}
-              </span>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Center: slot or section breadcrumb */}
-      <div className="pointer-events-auto" style={{ display: 'flex', alignItems: 'flex-start' }}>
-        {centerSlot ?? ((breadcrumb && !projectTitle) ? (
-          <span
-            className="pointer-events-none uppercase tracking-widest text-[12px]"
-            style={{
-              fontFamily: 'var(--font-cormorant), serif',
-              lineHeight: '12px',
-              color: '#13136B',
-            }}
-          >
-            {breadcrumb}
-          </span>
-        ) : null)}
-      </div>
-
-      {/* Right: MENU / CLOSE */}
-      <div
-        className="pointer-events-auto"
-        style={{
-          display: 'flex',
-          flexDirection: showInfoButton ? 'column' : 'row',
-          alignItems: 'flex-end',
-          justifyContent: 'flex-end',
-          gap: showInfoButton ? 10 : 24,
-        }}
-      >
-        {/* MENU / CLOSE */}
-        <div style={{ position: 'relative', width: '52px', height: '12px' }}>
-          <AnimatePresence mode="wait">
-            {!isOpen ? (
-              <motion.button
-                key="menu"
-                exit={{ x: 24, opacity: 0 }}
-                transition={{ duration: 0.22, ease: [0.25, 0, 0, 1] }}
-                onClick={toggle}
-                className="uppercase tracking-widest cursor-pointer"
-                style={{
-                  position: 'absolute',
-                  right: 0,
-                  top: 0,
-                  padding: 0,
-                  margin: 0,
-                  border: 'none',
-                  background: 'none',
-                  appearance: 'none',
-                  WebkitAppearance: 'none',
-                  lineHeight: '12px',
-                  fontFamily: 'var(--font-cormorant), serif',
-                  fontSize: '12px',
-                  color: '#13136B',
-                }}
-              >
-                Menu
-              </motion.button>
-            ) : (
-              <motion.button
-                key="close"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.22, ease: [0.25, 0, 0, 1] }}
-                onClick={toggle}
-                className="uppercase tracking-widest cursor-pointer"
-                style={{
-                  position: 'absolute',
-                  right: 0,
-                  top: 0,
-                  padding: 0,
-                  margin: 0,
-                  border: 'none',
-                  background: 'none',
-                  appearance: 'none',
-                  WebkitAppearance: 'none',
-                  lineHeight: '12px',
-                  fontFamily: 'var(--font-cormorant), serif',
-                  fontSize: '12px',
-                  color: 'white',
-                }}
-              >
-                Close
-              </motion.button>
-            )}
-          </AnimatePresence>
+            ) : null)}
         </div>
 
-        {/* [+] INFO — debajo de MENU cuando showInfoButton */}
-        {showInfoButton && (
-          <button
-            onClick={onInfoClick}
-            className="uppercase tracking-widest hover:opacity-70 transition-opacity cursor-pointer"
-            style={{
-              padding: 0,
-              margin: 0,
-              border: 'none',
-              background: 'none',
-              appearance: 'none',
-              WebkitAppearance: 'none',
-              lineHeight: '12px',
-              fontFamily: 'var(--font-cormorant), serif',
-              fontSize: '12px',
-              color: '#13136B',
-            }}
-          >
-            [+] Info
-          </button>
-        )}
+        {/* MENU/CLOSE + optional INFO button */}
+        <div
+          className={`flex items-end ${
+            showInfoButton ? 'flex-col gap-[10px]' : 'flex-row gap-6'
+          }`}
+        >
+          {/* MENU / CLOSE toggle */}
+          <div className="relative w-[52px] h-3">
+            <AnimatePresence mode="wait">
+              {!isOpen ? (
+                <motion.button
+                  key="menu"
+                  exit={{ x: 24, opacity: 0 }}
+                  transition={TRANSITION}
+                  onClick={toggle}
+                  className={`${BTN_BASE} absolute right-0 top-0`}
+                >
+                  Menu
+                </motion.button>
+              ) : (
+                <motion.button
+                  key="close"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={TRANSITION}
+                  onClick={toggle}
+                  className={`${BTN_BASE} absolute right-0 top-0 text-white`}
+                >
+                  Close
+                </motion.button>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* [+] INFO — shown below MENU on project detail pages */}
+          {showInfoButton && (
+            <button
+              onClick={onInfoClick}
+              className={`${BTN_BASE} hover:opacity-70 transition-opacity`}
+            >
+              [+] Info
+            </button>
+          )}
+        </div>
       </div>
     </nav>
   );

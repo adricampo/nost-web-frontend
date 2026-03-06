@@ -7,46 +7,47 @@ interface Props {
 }
 
 const LAYOUT_CLASSES: Record<GalleryImage['layout'], string> = {
-  small:  'col-span-3',
+  small: 'col-span-3',
   medium: 'col-span-4',
-  large:  'col-span-6',
-  xl:     'col-span-12',
+  large: 'col-span-6',
+  xl: 'col-span-12'
 };
 
 const ROW_SPANS: Record<GalleryImage['layout'], number> = {
-  small:  4,
+  small: 4,
   medium: 5,
-  large:  8,
-  xl:     7,
+  large: 8,
+  xl: 7
 };
-
-// Each row unit = 1 column width: (100vw - 72px padding - 11×16px gaps) / 12
-const GRID_AUTO_ROWS = 'calc((100vw - 72px - 176px) / 12)';
 
 const SIZES: Record<GalleryImage['layout'], string> = {
-  small:  '(max-width: 768px) 100vw, 25vw',
+  small: '(max-width: 768px) 100vw, 25vw',
   medium: '(max-width: 768px) 100vw, 33vw',
-  large:  '(max-width: 768px) 100vw, 50vw',
-  xl:     '(max-width: 768px) 100vw, calc(100vw - 72px)',
+  large: '(max-width: 768px) 100vw, 50vw',
+  xl: '(max-width: 768px) 100vw, calc(100vw - 72px)'
 };
 
-const FONT = { fontFamily: 'var(--font-cormorant), serif' };
+// Each row unit equals one column width: (100vw - 72px padding - 11×16px gaps) / 12
+const GRID_AUTO_ROWS = 'calc((100vw - 72px - 176px) / 12)';
 
-function alignStyle(align?: string): React.CSSProperties {
+function blockTextAlignStyle(align?: string): React.CSSProperties {
   if (align === 'center') return { marginLeft: 'auto', marginRight: 'auto' };
-  if (align === 'right')  return { marginLeft: 'auto', marginRight: 0 };
+  if (align === 'right') return { marginLeft: 'auto', marginRight: 0 };
   return {};
 }
 
 function GalleryGrid({ images }: { images: GalleryImage[] }) {
   return (
-    <div className="grid grid-cols-12 gap-4" style={{ gridAutoRows: GRID_AUTO_ROWS }}>
+    <div
+      className="grid grid-cols-12 gap-4"
+      style={{ gridAutoRows: GRID_AUTO_ROWS }}
+    >
       {images.map((item) => {
-        const itemStyle: React.CSSProperties = {
+        const gridRowStyle: React.CSSProperties = {
           gridRow: item.rowStart
             ? `${item.rowStart} / span ${ROW_SPANS[item.layout]}`
             : `span ${ROW_SPANS[item.layout]}`,
-          ...(item.colStart ? { gridColumnStart: item.colStart } : {}),
+          ...(item.colStart ? { gridColumnStart: item.colStart } : {})
         };
 
         if (!item.image) {
@@ -54,7 +55,7 @@ function GalleryGrid({ images }: { images: GalleryImage[] }) {
             <div
               key={item.id}
               className={LAYOUT_CLASSES[item.layout]}
-              style={itemStyle}
+              style={gridRowStyle}
             />
           );
         }
@@ -63,7 +64,7 @@ function GalleryGrid({ images }: { images: GalleryImage[] }) {
           <div
             key={item.id}
             className={`${LAYOUT_CLASSES[item.layout]} relative overflow-hidden`}
-            style={itemStyle}
+            style={gridRowStyle}
           >
             <Image
               src={getStrapiImageUrl(item.image.url)}
@@ -87,8 +88,11 @@ export default function ProjectGallery({ blocks }: Props) {
           <GalleryGrid images={block.images} />
           {block.blockText && (
             <p
-              className="text-[#13136B] text-[17px] leading-[27px] font-light"
-              style={{ ...FONT, maxWidth: '36rem', ...alignStyle(block.blockTextAlign) }}
+              className="text-[17px] leading-6.75 font-light"
+              style={{
+                maxWidth: '36rem',
+                ...blockTextAlignStyle(block.blockTextAlign)
+              }}
             >
               {block.blockText}
             </p>

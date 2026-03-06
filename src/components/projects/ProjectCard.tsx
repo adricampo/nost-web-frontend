@@ -7,8 +7,6 @@ interface Props {
   project: Project;
 }
 
-const FONT = { fontFamily: 'var(--font-cormorant), serif' };
-
 export default function ProjectCard({ project }: Props) {
   const imageUrl = project.coverImage
     ? getStrapiImageUrl(project.coverImage.url)
@@ -16,10 +14,7 @@ export default function ProjectCard({ project }: Props) {
 
   return (
     <Link href={`/projects/${project.slug}`} className="group block">
-      <div
-        className="relative overflow-hidden bg-[#13136B]/5"
-        style={{ aspectRatio: '3/4' }}
-      >
+      <div className="project-card-image relative overflow-hidden bg-navy/5 aspect-3/4">
         <Image
           src={imageUrl}
           alt={project.name}
@@ -30,17 +25,11 @@ export default function ProjectCard({ project }: Props) {
       </div>
 
       <div className="mt-3 flex items-baseline justify-between gap-3 min-w-0">
-        <span
-          className="shrink-0 text-[11px] uppercase tracking-widest"
-          style={{ ...FONT, color: '#9999BB', lineHeight: '16px' }}
-        >
+        <span className="shrink-0 text-[11px] uppercase tracking-widest text-navy-muted leading-4">
           [{project.code}]
         </span>
-        <span
-          className="text-right truncate text-[17px] leading-[22px] font-light"
-          style={{ ...FONT, color: '#13136B' }}
-        >
-          &ldquo;{project.name}&rdquo;
+        <span className="text-right truncate text-[17px] leading-22px font-light">
+          {project.name}
         </span>
       </div>
     </Link>

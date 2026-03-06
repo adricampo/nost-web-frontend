@@ -33,7 +33,7 @@ export default async function StudioPage() {
 
       <NavBar breadcrumb="The Studio" pageBackground={BG} />
 
-      <main className="flex-1 pb-16 pt-30">
+      <main className="flex-1 pb-24" style={{ paddingTop: 120 }}>
         {studio ? (
           <>
             <StudioIntroSection

@@ -7,60 +7,59 @@ import ProjectGallery from '@/components/projects/ProjectGallery';
 import ProjectInfoPanel from '@/components/projects/ProjectInfoPanel';
 import type { Project } from '@/lib/types';
 
-const FONT = { fontFamily: 'var(--font-cormorant), serif' };
+interface ProjectNavCenterSlotProps {
+  category: Project['category'];
+  code: string;
+  name: string;
+}
+
+function ProjectNavCenterSlot({
+  category,
+  code,
+  name
+}: ProjectNavCenterSlotProps) {
+  return (
+    <div className="flex flex-col gap-0.5">
+      <span className="uppercase tracking-widest text-xs leading-3">
+        Projects — {category}
+      </span>
+      <div className="flex items-baseline gap-2.5">
+        <span className="uppercase tracking-widest shrink-0 text-xs leading-3">
+          [{code}]
+        </span>
+        <span className="font-light text-[24px] leading-7">{name}</span>
+      </div>
+    </div>
+  );
+}
 
 export default function ProjectDetailClient({ project }: { project: Project }) {
   const [infoOpen, setInfoOpen] = useState(false);
 
-  const centerSlot = (
-    <div className="flex flex-col" style={{ gap: 2 }}>
-      <span
-        className="uppercase tracking-widest"
-        style={{ ...FONT, fontSize: 12, lineHeight: '12px', color: '#13136B' }}
-      >
-        Projects — {project.category}
-      </span>
-      <div className="flex items-baseline" style={{ gap: 10 }}>
-        <span
-          className="uppercase tracking-widest shrink-0"
-          style={{ ...FONT, fontSize: 12, lineHeight: '12px', color: '#13136B' }}
-        >
-          [{project.code}]
-        </span>
-        <span
-          className="font-light"
-          style={{ ...FONT, fontSize: 24, lineHeight: '28px', color: '#13136B' }}
-        >
-          {project.name}
-        </span>
-      </div>
-    </div>
-  );
-
   return (
     <>
-      {/* Logo fijo arriba izquierda — igual que /projects */}
-      <div className="fixed z-[65]" style={{ top: 28, left: 36 }}>
+      <div className="fixed top-7 left-9 z-65">
         <NostLogo />
       </div>
 
       <NavBar
-        centerSlot={centerSlot}
+        centerSlot={
+          <ProjectNavCenterSlot
+            category={project.category}
+            code={project.code}
+            name={project.name}
+          />
+        }
         pageBackground="#F5F4F1"
         showInfoButton
         onInfoClick={() => setInfoOpen(true)}
       />
 
-      <main className="flex-1 pb-16" style={{ paddingTop: 160, paddingLeft: 36, paddingRight: 36 }}>
+      <main className="flex-1" style={{ paddingTop: 160, paddingBottom: 64, paddingLeft: 36, paddingRight: 36 }}>
         {project.galleryBlocks && project.galleryBlocks.length > 0 ? (
           <ProjectGallery blocks={project.galleryBlocks} />
         ) : (
-          <p
-            className="text-[#9999BB] text-[17px]"
-            style={{ fontFamily: 'var(--font-cormorant), serif' }}
-          >
-            No gallery images yet.
-          </p>
+          <p className="text-navy-muted text-[17px]">No gallery images yet.</p>
         )}
       </main>
 

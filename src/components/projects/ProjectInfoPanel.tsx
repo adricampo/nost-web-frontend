@@ -49,7 +49,7 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
             <div className="flex items-center justify-end shrink-0">
               <button
                 onClick={onClose}
-                className="uppercase tracking-widest text-xs cursor-pointer hover:opacity-70 transition-opacity p-0 m-0 border-0 bg-transparent appearance-none leading-3"
+                className="uppercase tracking-widest text-xs text-white cursor-pointer hover:opacity-70 transition-opacity p-0 m-0 border-0 bg-transparent appearance-none leading-3 font-apercu"
               >
                 [−] Info
               </button>
@@ -60,7 +60,7 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
               <div className="flex flex-col mt-[22vh] gap-2">
                 {activeFields.map(({ key, label }) => (
                   <div key={key} className="flex gap-6">
-                    <span className="shrink-0 uppercase tracking-widest text-xs min-w-35">
+                    <span className="shrink-0 uppercase tracking-widest text-xs min-w-35 font-apercu">
                       {label}:
                     </span>
                     <span className="font-light text-base leading-5">
@@ -78,7 +78,7 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
             </div>
 
             {/* Copyright — fixed at bottom */}
-            <p className="uppercase tracking-widest shrink-0 text-[10px] leading-4">
+            <p className="uppercase tracking-widest shrink-0 text-[10px] leading-4 font-apercu">
               All the images are protected by the author. If you want to use the
               images please contact{' '}
               <a
