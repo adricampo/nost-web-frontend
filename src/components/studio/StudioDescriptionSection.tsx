@@ -17,12 +17,12 @@ export default function StudioDescriptionSection({
       <div />
       <div className="flex flex-col gap-7">
         {descriptionP1 && (
-          <p className="text-[26px] leading-[33px] font-light">
+          <p className="text-[21px] leading-[33px] font-light">
             {descriptionP1}
           </p>
         )}
         {descriptionP2 && (
-          <p className="text-[26px] leading-[33px] font-light">
+          <p className="text-[21px] leading-[33px] font-light">
             {descriptionP2}
           </p>
         )}

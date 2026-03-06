@@ -16,10 +16,9 @@ export default function Footer({ socials = [] }: FooterProps) {
 
   return (
     <footer
-      className="grid items-center font-apercu"
+      className="grid items-center font-apercu text-xs"
       style={{
         gridTemplateColumns: '50% 1fr',
-        fontSize: 12,
         padding: '36px'
       }}
     >

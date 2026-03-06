@@ -40,10 +40,10 @@ export default function StudioTeamSection({ introImage2, teamMembers }: Props) {
               className="grid"
               style={{ gridTemplateColumns: '200px 1fr', gap: '2rem' }}
             >
-              <span className="text-[25px] leading-[33px] font-light">
+              <span className="text-[20px] leading-[33px] font-light">
                 {member.name}
               </span>
-              <p className="text-[26px] leading-[33px] font-light whitespace-pre-line font-apercu">
+              <p className="text-[21px] leading-[33px] font-light whitespace-pre-line font-apercu">
                 {member.bio}
               </p>
             </div>

@@ -31,7 +31,7 @@ export default function StudioIntroSection({ introImage1, tagline }: Props) {
 
       <div className="flex items-center">
         {tagline && (
-          <h2 className="text-[34px] leading-[42px] font-light">{tagline}</h2>
+          <h2 className="text-[32px] leading-[42px] font-light">{tagline}</h2>
         )}
       </div>
     </div>
