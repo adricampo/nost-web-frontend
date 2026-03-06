@@ -84,13 +84,13 @@ export default function ProjectGallery({ blocks }: Props) {
   return (
     <div className="flex flex-col gap-20">
       {blocks.map((block) => (
-        <div key={block.id} className="flex flex-col gap-8">
+        <div key={block.id} className="flex flex-col gap-4">
           <GalleryGrid images={block.images} />
           {block.blockText && (
             <p
-              className="text-[17px] leading-6.75 font-light"
+              className="text-[17px] leading-5.5 font-light"
               style={{
-                maxWidth: '36rem',
+                maxWidth: '44rem',
                 ...blockTextAlignStyle(block.blockTextAlign)
               }}
             >

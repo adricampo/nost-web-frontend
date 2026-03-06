@@ -19,12 +19,12 @@ function ProjectNavCenterSlot({
   name
 }: ProjectNavCenterSlotProps) {
   return (
-    <div className="flex flex-col gap-0.5">
+    <div className="flex flex-col gap-3 max-w-[350px]">
       <span className="uppercase tracking-widest text-xs leading-3">
         Projects — {category}
       </span>
       <div className="flex items-baseline gap-2.5">
-        <span className="uppercase tracking-widest shrink-0 text-xs leading-3">
+        <span className="uppercase tracking-widest shrink-0 text-xs leading-3 w-30">
           [{code}]
         </span>
         <span className="font-light text-[24px] leading-7">{name}</span>
@@ -51,11 +51,20 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
           />
         }
         pageBackground="#F5F4F1"
+        paddingBottom={20}
         showInfoButton
         onInfoClick={() => setInfoOpen(true)}
       />
 
-      <main className="flex-1" style={{ paddingTop: 160, paddingBottom: 64, paddingLeft: 36, paddingRight: 36 }}>
+      <main
+        className="flex-1"
+        style={{
+          paddingTop: 160,
+          paddingBottom: 64,
+          paddingLeft: 36,
+          paddingRight: 36
+        }}
+      >
         {project.galleryBlocks && project.galleryBlocks.length > 0 ? (
           <ProjectGallery blocks={project.galleryBlocks} />
         ) : (

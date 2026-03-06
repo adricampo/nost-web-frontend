@@ -9,6 +9,7 @@ interface NavBarProps {
   showInfoButton?: boolean;
   onInfoClick?: () => void;
   pageBackground?: string;
+  paddingBottom?: number;
 }
 
 const TRANSITION = { duration: 0.22, ease: [0.25, 0, 0, 1] } as const;
@@ -22,15 +23,16 @@ export default function NavBar({
   centerSlot,
   showInfoButton,
   onInfoClick,
-  pageBackground
+  pageBackground,
+  paddingBottom
 }: NavBarProps) {
   const { toggle, isOpen } = useMenu();
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-[60] grid grid-cols-[50%_1fr] items-start pointer-events-none font-apercu"
+      className="fixed top-0 left-0 right-0 z-[60] grid grid-cols-[50%_1fr] items-stretch pointer-events-none font-apercu"
       style={{
-        padding: pageBackground ? '28px 36px 74px' : '28px 36px 0',
+        padding: pageBackground ? `28px 36px ${paddingBottom ?? 65}px` : '28px 36px 0',
         background: pageBackground ?? 'transparent'
       }}
     >
@@ -38,7 +40,7 @@ export default function NavBar({
       <div />
 
       {/* Right: breadcrumb/slot at column 7 + MENU at far right */}
-      <div className="pointer-events-auto flex justify-between items-start">
+      <div className="pointer-events-auto flex justify-between items-start h-full">
         {/* Breadcrumb / center slot — starts at column 7 (50vw) */}
         <div className="flex items-start">
           {centerSlot ??
@@ -51,8 +53,8 @@ export default function NavBar({
 
         {/* MENU/CLOSE + optional INFO button */}
         <div
-          className={`flex items-end ${
-            showInfoButton ? 'flex-col gap-[10px]' : 'flex-row gap-6'
+          className={`flex ${
+            showInfoButton ? 'flex-col justify-between h-full' : 'flex-row gap-6 items-end'
           }`}
         >
           {/* MENU / CLOSE toggle */}

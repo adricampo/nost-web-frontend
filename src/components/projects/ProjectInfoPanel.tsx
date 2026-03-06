@@ -45,8 +45,8 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
             transition={PANEL_TRANSITION}
             className="fixed top-0 right-0 bottom-0 z-67 w-[45vw] min-w-[320px] bg-navy text-white flex flex-col pl-12 pr-9 pt-7 pb-7"
           >
-            {/* Top bar */}
-            <div className="flex items-center justify-end shrink-0">
+            {/* Top bar — height matches NavBar so [−] Info aligns with [+] Info */}
+            <div className="flex items-end justify-end shrink-0 h-20">
               <button
                 onClick={onClose}
                 className="uppercase tracking-widest text-xs text-white cursor-pointer hover:opacity-70 transition-opacity p-0 m-0 border-0 bg-transparent appearance-none leading-3 font-apercu"
@@ -57,7 +57,7 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
 
             {/* Scrollable content */}
             <div className="flex-1 overflow-y-auto">
-              <div className="flex flex-col mt-[22vh] gap-2">
+              <div className="flex flex-col mt-[7.5vh] gap-2">
                 {activeFields.map(({ key, label }) => (
                   <div key={key} className="flex gap-6">
                     <span className="shrink-0 uppercase tracking-widest text-xs min-w-35 font-apercu">
@@ -68,13 +68,16 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
                     </span>
                   </div>
                 ))}
-              </div>
 
-              {project.description && (
-                <p className="font-light text-base leading-5.5 mt-12">
-                  {project.description}
-                </p>
-              )}
+                {project.description && (
+                  <div className="flex gap-6 mt-30">
+                    <span className="shrink-0 min-w-35" />
+                    <p className="font-light text-base leading-5.5 max-w-[70%]">
+                      {project.description}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Copyright — fixed at bottom */}
