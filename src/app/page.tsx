@@ -2,6 +2,7 @@ import Image from 'next/image';
 import NostLogo from '@/components/layout/NostLogo';
 import NavBar from '@/components/layout/NavBar';
 import { getLanding, getStrapiImageUrl } from '@/lib/strapi';
+import { SITE_NAME, SITE_TAGLINE } from '@/lib/site';
 
 export default async function LandingPage() {
   let heroImageUrl = '';
@@ -16,12 +17,11 @@ export default async function LandingPage() {
   }
 
   return (
-    <main className="relative h-screen w-full overflow-hidden bg-[#13136B]">
-      {/* Hero fullscreen */}
+    <main className="relative h-screen w-full overflow-hidden bg-navy">
       {heroImageUrl && (
         <Image
           src={heroImageUrl}
-          alt="Nost Interiors"
+          alt={`${SITE_NAME} — ${SITE_TAGLINE}`}
           fill
           priority
           className="object-cover"
@@ -29,15 +29,12 @@ export default async function LandingPage() {
         />
       )}
 
-      {/* Subtle overlay */}
       <div className="absolute inset-0 bg-black/5" />
 
-      {/* Logo top-left */}
       <div className="absolute top-7 left-9 z-10">
         <NostLogo />
       </div>
 
-      {/* Menu top-right (no breadcrumb on landing) */}
       <NavBar />
     </main>
   );
