@@ -87,7 +87,7 @@ export default function ProjectGallery({ blocks }: Props) {
           <GalleryGrid images={block.images} />
           {block.blockText && (
             <p
-              className="text-[17px] leading-5.5 font-light"
+              className="text-[14px] lg:text-[17px] leading-5.5 font-light"
               style={{
                 maxWidth: '44rem',
                 ...blockTextAlignStyle(block.blockTextAlign)

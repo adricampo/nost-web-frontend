@@ -53,7 +53,7 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto overflow-x-hidden">
               <div className="flex flex-col mt-[7.5vh] gap-2">
                 {activeFields.map(({ key, label }) => (
                   <div key={key} className="flex gap-6">
@@ -68,8 +68,8 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
 
                 {project.description && (
                   <div className="flex gap-6 mt-30">
-                    <span className="shrink-0 min-w-35" />
-                    <p className="font-light text-base leading-5.5 max-w-[70%]">
+                    <span className="hidden lg:block shrink-0 min-w-35" />
+                    <p className="font-light text-[14px] lg:text-base leading-5.5 lg:max-w-[70%]">
                       {project.description}
                     </p>
                   </div>

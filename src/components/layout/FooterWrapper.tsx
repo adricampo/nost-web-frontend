@@ -14,7 +14,7 @@ export default async function FooterWrapper() {
     { label: 'Instagram', href: contact?.instagram },
     { label: 'Linkedin', href: contact?.linkedin },
     { label: 'Pinterest', href: contact?.pinterest },
-  ];
+  ].filter(({ href }) => !!href);
 
   return <Footer socials={socials} />;
 }

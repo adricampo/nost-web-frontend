@@ -45,13 +45,12 @@ export default async function ContactPage() {
       <NavBar breadcrumb="Contact" pageBackground={PAGE_BG} />
 
       <main
-        className="flex-1 pb-16"
-        style={{ paddingLeft: '50vw', paddingRight: 36, paddingTop: '22vh' }}
+        className="flex-1 pb-16 px-9 pt-[22vh] md:pl-[50vw]"
       >
-        <div className="flex flex-col gap-[18vh]">
+        <div className="flex flex-col gap-[10vh] md:gap-[18vh]">
 
           {contact?.tagline && (
-            <p className="text-[25px] leading-[30px] font-light" style={{ maxWidth: 620 }}>
+            <p className="text-[18px] md:text-[20px] lg:text-[25px] leading-[30px] font-light lg:max-w-[620px]">
               {contact.tagline}
             </p>
           )}
@@ -61,7 +60,7 @@ export default async function ContactPage() {
               {fields.map(({ label, value, href }) => (
                 <div key={label} className="flex items-baseline">
                   <span
-                    className="text-base leading-[37px] w-[110px] shrink-0"
+                    className="text-base leading-[37px] w-[80px] md:w-[80px] lg:w-[110px] shrink-0"
                   >
                     {label}:
                   </span>
@@ -70,12 +69,12 @@ export default async function ContactPage() {
                       href={href}
                       target={href.startsWith('mailto') ? undefined : '_blank'}
                       rel="noopener noreferrer"
-                      className="text-[25px] leading-[30px] font-light no-underline"
+                      className="text-[18px] md:text-[20px] lg:text-[25px] leading-[30px] font-light no-underline"
                     >
                       {value}
                     </a>
                   ) : (
-                    <span className="text-[25px] leading-[30px] font-light">{value}</span>
+                    <span className="text-[18px] md:text-[20px] lg:text-[25px] leading-[30px] font-light">{value}</span>
                   )}
                 </div>
               ))}
