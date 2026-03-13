@@ -71,7 +71,7 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
         {project.galleryBlocks && project.galleryBlocks.length > 0 ? (
           <ProjectGallery blocks={project.galleryBlocks} />
         ) : (
-          <p className="text-navy-muted text-[17px]">No gallery images yet.</p>
+          <p className="text-navy-muted text-[17px]">{NO_GALLERY_MESSAGE}</p>
         )}
       </main>
 

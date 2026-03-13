@@ -9,9 +9,9 @@ interface Props {
 
 export default function StudioTeamSection({ introImage2, teamMembers }: Props) {
   return (
-    <div className="grid px-9 mb-36" style={{ gridTemplateColumns: '50% 1fr' }}>
+    <div className="grid px-9 mb-36 grid-cols-1 lg:grid-cols-[50%_1fr]">
       {introImage2 ? (
-        <div style={{ paddingRight: 80 }}>
+        <div className="lg:pr-20 mb-12 lg:mb-0">
           <div
             className="relative overflow-hidden"
             style={{ aspectRatio: '3/4' }}
@@ -20,13 +20,13 @@ export default function StudioTeamSection({ introImage2, teamMembers }: Props) {
               src={getStrapiImageUrl(introImage2.url)}
               alt={introImage2.alternativeText || 'Studio team'}
               fill
-              sizes="40vw"
+              sizes="(max-width: 1024px) 100vw, 40vw"
               className="object-cover"
             />
           </div>
         </div>
       ) : (
-        <div />
+        <div className="hidden lg:block" />
       )}
 
       {teamMembers.length > 0 && (
@@ -37,8 +37,8 @@ export default function StudioTeamSection({ introImage2, teamMembers }: Props) {
           {teamMembers.map((member) => (
             <div
               key={member.id}
-              className="grid"
-              style={{ gridTemplateColumns: '200px 1fr', gap: '2rem' }}
+              className="flex flex-col lg:grid gap-4 lg:gap-8"
+              style={{ gridTemplateColumns: '200px 1fr' }}
             >
               <span className="text-[20px] leading-[33px] font-light">
                 {member.name}

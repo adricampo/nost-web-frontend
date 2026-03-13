@@ -56,8 +56,11 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
             <div className="flex-1 overflow-y-auto overflow-x-hidden">
               <div className="flex flex-col mt-[7.5vh] gap-2">
                 {activeFields.map(({ key, label }) => (
-                  <div key={key} className="flex gap-6">
-                    <span className="shrink-0 uppercase tracking-widest text-xs min-w-35 font-apercu">
+                  <div
+                    key={key}
+                    className="flex flex-col gap-1.5 md:flex-row md:gap-6"
+                  >
+                    <span className="shrink-0 uppercase tracking-widest text-xs md:min-w-28 lg:min-w-35 font-apercu">
                       {label}:
                     </span>
                     <span className="font-light text-base leading-5">
