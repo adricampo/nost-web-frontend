@@ -81,9 +81,9 @@ function GalleryGrid({ images }: { images: GalleryImage[] }) {
 
 export default function ProjectGallery({ blocks }: Props) {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-9">
       {blocks.map((block) => (
-        <div key={block.id} className="flex flex-col gap-4">
+        <div key={block.id} className="flex flex-col gap-9">
           <GalleryGrid images={block.images} />
           {block.blockText && (
             <p
