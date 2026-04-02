@@ -17,7 +17,7 @@ export default async function LandingPage() {
   }
 
   return (
-    <main className="relative h-screen w-full overflow-hidden bg-navy">
+    <main className="relative h-screen h-[100dvh] w-full overflow-hidden bg-navy">
       {heroImageUrl && (
         <Image
           src={heroImageUrl}
