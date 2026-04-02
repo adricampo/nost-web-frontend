@@ -22,8 +22,8 @@ export default function ProjectsPageClient({ projects, children }: Props) {
 
       <main className="flex-1" style={{ paddingTop: 120, paddingBottom: 64, paddingLeft: 36, paddingRight: 36 }}>
         <div className="projects-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-14">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </main>

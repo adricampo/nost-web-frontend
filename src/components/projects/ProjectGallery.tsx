@@ -31,7 +31,7 @@ const GRID_AUTO_ROWS = 'calc((100vw - 72px - 176px) / 12)';
 
 function blockTextAlignStyle(align?: string): React.CSSProperties {
   if (align === 'center') return { marginLeft: 'auto', marginRight: 'auto' };
-  if (align === 'right') return { marginLeft: 'auto', marginRight: 0 };
+  if (align === 'right') return { marginLeft: 0, marginRight: 0 };
   return {};
 }
 

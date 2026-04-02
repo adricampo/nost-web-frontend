@@ -42,15 +42,19 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={PANEL_TRANSITION}
-            className="fixed top-0 right-0 bottom-0 z-67 w-[45vw] min-w-[320px] bg-navy text-white flex flex-col pl-12 pr-9 pt-7 pb-7"
+            className="fixed top-0 right-0 bottom-0 z-67 w-full md:w-[45vw] md:min-w-80 bg-navy text-white flex flex-col pl-12 pr-9 pt-7 pb-7"
           >
-            <div className="flex items-end justify-end shrink-0 h-20">
-              <button
-                onClick={onClose}
-                className="uppercase tracking-widest text-xs text-white cursor-pointer hover:opacity-70 transition-opacity p-0 m-0 border-0 bg-transparent appearance-none leading-3 font-apercu"
-              >
-                {LABEL_CLOSE_INFO}
-              </button>
+            {/* Mirrors NavBar 2-row structure: row1 spacer (h-3) + gap-3 + row2 (h-7) */}
+            <div className="flex flex-col gap-3 shrink-0">
+              <div className="h-3" />
+              <div className="h-7 flex justify-end items-end">
+                <button
+                  onClick={onClose}
+                  className="uppercase tracking-widest text-xs text-white cursor-pointer hover:opacity-70 transition-opacity p-0 m-0 border-0 bg-transparent appearance-none leading-3 font-apercu"
+                >
+                  {LABEL_CLOSE_INFO}
+                </button>
+              </div>
             </div>
 
             <div className="flex-1 overflow-y-auto overflow-x-hidden">
@@ -58,9 +62,9 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
                 {activeFields.map(({ key, label }) => (
                   <div
                     key={key}
-                    className="flex flex-col gap-1.5 md:flex-row md:gap-6"
+                    className="flex flex-row gap-6 items-center"
                   >
-                    <span className="shrink-0 uppercase tracking-widest text-xs md:min-w-28 lg:min-w-35 font-apercu">
+                    <span className="shrink-0 uppercase tracking-widest text-xs min-w-28 lg:min-w-35 font-apercu">
                       {label}:
                     </span>
                     <span className="font-light text-base leading-5">

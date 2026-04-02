@@ -10,7 +10,7 @@ export default function StudioDescriptionSection({
   if (!descriptionP1 && !descriptionP2) return null;
 
   return (
-    <div className="grid px-9 mt-12 mb-36 grid-cols-1 lg:grid-cols-[50%_1fr]">
+    <div className="grid px-9 mt-12 mb-12 grid-cols-1 lg:grid-cols-[50%_1fr]">
       <div className="hidden lg:block" />
       <div className="flex flex-col gap-7">
         {descriptionP1 && (

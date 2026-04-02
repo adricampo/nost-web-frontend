@@ -41,10 +41,8 @@ export default function MenuOverlay() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={PANEL_TRANSITION}
-            className="fixed top-0 right-0 bottom-0 z-80 bg-navy text-white flex flex-col"
+            className="fixed top-0 right-0 bottom-0 z-80 bg-navy text-white flex flex-col w-full md:w-[50vw] md:min-w-80"
             style={{
-              width: '50vw',
-              minWidth: 320,
               paddingLeft: 80,
               paddingRight: 36,
               paddingTop: 28,
@@ -52,13 +50,13 @@ export default function MenuOverlay() {
             }}
           >
             {/* Top bar: Menu label + Close button */}
-            <div className="flex items-center justify-between">
-              <span className="uppercase tracking-widest text-xs text-white">
+            <div className="flex items-center justify-between font-apercu">
+              <span className="uppercase tracking-widest text-xs leading-3 text-white">
                 {LABEL_MENU}
               </span>
               <button
                 onClick={close}
-                className="uppercase tracking-widest text-xs text-white cursor-pointer hover:opacity-70 transition-opacity p-0 m-0 border-0 bg-transparent appearance-none"
+                className="uppercase tracking-widest text-xs leading-3 text-white cursor-pointer hover:opacity-70 transition-opacity p-0 m-0 border-0 bg-transparent appearance-none"
               >
                 {LABEL_CLOSE}
               </button>
@@ -73,7 +71,7 @@ export default function MenuOverlay() {
                   key={item.href}
                   onClick={() => handleNav(item.href)}
                   className="text-left font-light text-white cursor-pointer p-0 m-0 border-0 bg-transparent appearance-none w-fit underline-offset-4 decoration-[0.5px] hover:underline hover:opacity-70 transition-all"
-                  style={{ fontSize: 40, lineHeight: 1.15 }}
+                  style={{ fontSize: 36, lineHeight: 1.15 }}
                 >
                   {item.label}
                 </button>

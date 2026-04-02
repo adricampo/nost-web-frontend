@@ -74,33 +74,41 @@ export default function NavBar({
         }}
       >
         <div />
-        <div className="pointer-events-auto flex justify-between items-start h-full">
-          <div className="flex items-start">
-            {centerSlot ??
-              (breadcrumb ? (
+        {showInfoButton ? (
+          /* Project detail: 2-row layout — breadcrumb|MENU top, centerSlot|INFO bottom */
+          <div className="pointer-events-auto flex flex-col gap-3 min-h-[52px] justify-between">
+            <div className="flex justify-between items-start">
+              {breadcrumb && (
                 <span className="pointer-events-none uppercase tracking-widest leading-3 text-xs">
                   {breadcrumb}
                 </span>
-              ) : null)}
-          </div>
-          <div
-            className={`flex ${
-              showInfoButton
-                ? 'flex-col justify-between h-full'
-                : 'flex-row gap-6 items-end'
-            }`}
-          >
-            {menuButton}
-            {showInfoButton && (
+              )}
+              {menuButton}
+            </div>
+            <div className="flex justify-between items-end">
+              {centerSlot}
               <button
                 onClick={onInfoClick}
                 className={`${BTN_BASE} whitespace-nowrap hover:opacity-70 transition-opacity`}
               >
                 {LABEL_MORE_INFO}
               </button>
-            )}
+            </div>
           </div>
-        </div>
+        ) : (
+          /* Standard layout — breadcrumb or centerSlot left, MENU right */
+          <div className="pointer-events-auto flex justify-between items-start h-full">
+            <div className="flex items-start">
+              {centerSlot ??
+                (breadcrumb ? (
+                  <span className="pointer-events-none uppercase tracking-widest leading-3 text-xs">
+                    {breadcrumb}
+                  </span>
+                ) : null)}
+            </div>
+            <div className="flex flex-row gap-6 items-end">{menuButton}</div>
+          </div>
+        )}
       </div>
 
       {/* Mobile layout */}
@@ -112,25 +120,34 @@ export default function NavBar({
             : '28px 36px 0'
         }}
       >
-        {centerSlot ? (
-          /* Project detail: MENU (+ Info) top-right, centerSlot full-width below */
+        {showInfoButton ? (
+          /* Project detail: MENU + INFO top-right, breadcrumb + centerSlot below */
           <>
             <div className="flex justify-end items-center gap-5">
-              {showInfoButton && (
-                <button
-                  onClick={onInfoClick}
-                  className={`${BTN_BASE} hover:opacity-70 transition-opacity`}
-                >
-                  {LABEL_MORE_INFO}
-                </button>
-              )}
+              <button
+                onClick={onInfoClick}
+                className={`${BTN_BASE} hover:opacity-70 transition-opacity`}
+              >
+                {LABEL_MORE_INFO}
+              </button>
               {menuButton}
             </div>
+            {breadcrumb && (
+              <span className="mt-7 block uppercase tracking-widest leading-3 text-xs text-right">
+                {breadcrumb}
+              </span>
+            )}
+            {centerSlot && <div className="mt-4">{centerSlot}</div>}
+          </>
+        ) : centerSlot ? (
+          /* Pages with centerSlot but no info button */
+          <>
+            <div className="flex justify-end">{menuButton}</div>
             <div className="mt-8">{centerSlot}</div>
           </>
         ) : (
           /* Simple pages: MENU top-right, breadcrumb below right-aligned */
-          <div className="flex flex-col items-end gap-8">
+          <div className="flex flex-col items-end gap-7">
             {menuButton}
             {breadcrumb && (
               <span className="uppercase tracking-widest leading-3 text-xs text-right">

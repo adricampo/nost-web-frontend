@@ -5,16 +5,21 @@ import type { Project } from '@/lib/types';
 
 interface Props {
   project: Project;
+  index?: number;
 }
 
-export default function ProjectCard({ project }: Props) {
+export default function ProjectCard({ project, index = 0 }: Props) {
   const imageUrl = project.coverImage
     ? getStrapiImageUrl(project.coverImage.url)
     : '/placeholder.jpg';
 
+  const isLarge = index % 2 === 0;
+
   return (
     <Link href={`/projects/${project.slug}`} className="group block">
-      <div className="project-card-image relative overflow-hidden bg-navy/5 aspect-3/4">
+      <div
+        className={`project-card-image relative overflow-hidden bg-navy/5 ${isLarge ? 'aspect-3/4' : 'aspect-[3/2] sm:aspect-3/4'}`}
+      >
         <Image
           src={imageUrl}
           alt={project.name}
@@ -25,7 +30,7 @@ export default function ProjectCard({ project }: Props) {
       </div>
 
       <div className="mt-3 flex items-baseline justify-between gap-3 min-w-0">
-        <span className="shrink-0 text-[11px] uppercase tracking-widest text-navy-muted leading-4">
+        <span className="shrink-0 text-[11px] uppercase tracking-widest text-navy-muted leading-4 self-start">
           [{project.code}]
         </span>
         <span className="text-right truncate text-[17px] leading-22px font-light">

@@ -9,7 +9,7 @@ interface Props {
 
 export default function StudioTeamSection({ introImage2, teamMembers }: Props) {
   return (
-    <div className="grid px-9 mb-36 grid-cols-1 lg:grid-cols-[50%_1fr]">
+    <div className="grid px-9 mb-12 grid-cols-1 lg:grid-cols-[50%_1fr]">
       {introImage2 ? (
         <div className="lg:pr-20 mb-12 lg:mb-0">
           <div
@@ -30,10 +30,7 @@ export default function StudioTeamSection({ introImage2, teamMembers }: Props) {
       )}
 
       {teamMembers.length > 0 && (
-        <div
-          className="flex flex-col gap-10"
-          style={{ paddingTop: 'calc(26.67vw - 81px)' }}
-        >
+        <div className="flex flex-col gap-10 lg:pt-[calc(26.67vw-81px)]">
           {teamMembers.map((member) => (
             <div
               key={member.id}

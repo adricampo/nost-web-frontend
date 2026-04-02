@@ -8,7 +8,7 @@ interface Props {
 
 export default function StudioWorkshopSection({ images }: Props) {
   return (
-    <div className="grid px-9 mt-[72px] mb-[72px] grid-cols-1 lg:grid-cols-[50%_1fr]">
+    <div className="grid px-9 grid-cols-1 lg:grid-cols-[50%_1fr]">
       <div className="hidden lg:block" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {images.map((img) => (
