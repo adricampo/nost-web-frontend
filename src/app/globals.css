@@ -33,6 +33,23 @@
 }
 
 /*
+  Landing hero: fixed full-screen container.
+  Uses 100lvh (large viewport height) so the image extends into the home
+  indicator area on iOS Safari — avoiding the navy strip at the bottom.
+  Falls back to 100vh for older browsers (which also maps to lvh on older iOS).
+*/
+.landing-hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: var(--color-navy);
+  height: 100vh;
+  height: 100lvh;
+}
+
+/*
   Projects grid: S T / T S alternating pattern — both horizontally and vertically.
   "Short" items (aspect-ratio 3/2) use align-self: start so they don't stretch.
 

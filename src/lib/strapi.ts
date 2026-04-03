@@ -10,7 +10,7 @@ export function getStrapiImageUrl(url: string): string {
 async function fetchStrapi<T>(path: string): Promise<T> {
   const res = await fetch(`${STRAPI_URL}/api${path}`, {
     cache: process.env.NODE_ENV === 'development' ? 'no-store' : 'force-cache',
-    next: process.env.NODE_ENV === 'development' ? undefined : { revalidate: 3600 },
+    next: process.env.NODE_ENV === 'development' ? undefined : { revalidate: 300 },
     headers: { 'Content-Type': 'application/json' },
   });
   if (!res.ok) {
