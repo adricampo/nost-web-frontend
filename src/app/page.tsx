@@ -17,7 +17,13 @@ export default async function LandingPage() {
   }
 
   return (
-    <main className="fixed inset-0 overflow-hidden bg-navy">
+    <main
+      className="fixed left-0 right-0 overflow-hidden bg-navy"
+      style={{
+        top: 'calc(-1 * env(safe-area-inset-top, 0px))',
+        bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))'
+      }}
+    >
       {heroImageUrl && (
         <Image
           src={heroImageUrl}

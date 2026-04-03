@@ -42,7 +42,13 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={PANEL_TRANSITION}
-            className="fixed top-0 right-0 bottom-0 z-67 w-full md:w-[45vw] md:min-w-80 bg-navy text-white flex flex-col pl-12 pr-9 pt-7 pb-7"
+            className="fixed right-0 z-67 w-full md:w-[45vw] md:min-w-80 bg-navy text-white flex flex-col pl-12 pr-9"
+            style={{
+              top: 'calc(-1 * env(safe-area-inset-top, 0px))',
+              bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
+              paddingTop: 'calc(env(safe-area-inset-top, 0px) + 28px)',
+              paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 28px)'
+            }}
           >
             {/* Mirrors NavBar 2-row structure: row1 spacer (h-3) + gap-3 + row2 (h-7) */}
             <div className="flex flex-col gap-3 shrink-0">

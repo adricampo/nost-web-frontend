@@ -23,7 +23,10 @@ const apercu = localFont({
 });
 
 export const viewport: Viewport = {
-  viewportFit: 'cover'
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#13136B'
 };
 
 export const metadata: Metadata = {

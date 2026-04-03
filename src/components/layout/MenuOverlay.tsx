@@ -41,12 +41,14 @@ export default function MenuOverlay() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={PANEL_TRANSITION}
-            className="fixed top-0 right-0 bottom-0 z-80 bg-navy text-white flex flex-col w-full md:w-[50vw] md:min-w-80"
+            className="fixed right-0 z-80 bg-navy text-white flex flex-col w-full md:w-[50vw] md:min-w-80"
             style={{
+              top: 'calc(-1 * env(safe-area-inset-top, 0px))',
+              bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
               paddingLeft: 80,
               paddingRight: 36,
-              paddingTop: 28,
-              paddingBottom: 64
+              paddingTop: 'calc(env(safe-area-inset-top, 0px) + 28px)',
+              paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 64px)'
             }}
           >
             {/* Top bar: Menu label + Close button */}
