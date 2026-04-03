@@ -31,20 +31,20 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE_NAME}`,
-    template: `%s — ${SITE_NAME}`
+    default: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    template: `%s | ${SITE_NAME}`
   },
   description: SITE_DESCRIPTION,
   openGraph: {
     siteName: SITE_NAME,
     locale: 'en_US',
     type: 'website',
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION
   }
 };
@@ -56,10 +56,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta name="theme-color" content="#13136B" />
-      </head>
       <body className={`${stanley.variable} ${apercu.variable} antialiased`}>
         <Providers>{children}</Providers>
       </body>
