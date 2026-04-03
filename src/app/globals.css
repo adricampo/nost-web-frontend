@@ -34,19 +34,18 @@
 
 /*
   Landing hero: fixed full-screen container.
-  Uses 100lvh (large viewport height) so the image extends into the home
-  indicator area on iOS Safari — avoiding the navy strip at the bottom.
-  Falls back to 100vh for older browsers (which also maps to lvh on older iOS).
+  Uses inset: 0 (top/right/bottom/left: 0) so that when viewport-fit=cover
+  is active (set via <meta> in layout.tsx) the element extends behind the iOS
+  status bar and home indicator, covering the full physical screen.
 */
 .landing-hero {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   overflow: hidden;
   background-color: var(--color-navy);
-  height: 100vh;
-  height: 100lvh;
 }
 
 /*
