@@ -30,7 +30,7 @@ export default function ProjectCard({ project, index = 0 }: Props) {
       </div>
 
       <div className="mt-3 flex items-baseline justify-between gap-3 min-w-0">
-        <span className="shrink-0 text-[11px] uppercase tracking-widest text-navy-muted leading-4 self-start">
+        <span className="shrink-0 text-[11px] uppercase tracking-widest leading-4 self-start">
           [{project.code}]
         </span>
         <span className="text-right truncate text-[17px] leading-22px font-light">

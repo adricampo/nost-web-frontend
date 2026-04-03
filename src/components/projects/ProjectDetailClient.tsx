@@ -16,10 +16,10 @@ interface ProjectNavCenterSlotProps {
 function ProjectNavCenterSlot({ code, name }: ProjectNavCenterSlotProps) {
   return (
     <div className="flex items-baseline gap-2.5 justify-between md:justify-start md:max-w-[280px] lg:max-w-[460px]">
-      <span className="uppercase tracking-widest shrink-0 text-xs leading-3 w-20 lg:w-30 self-start">
+      <span className="font-stanley uppercase tracking-widest shrink-0 text-xs leading-3 w-20 lg:w-30 self-start">
         [{code}]
       </span>
-      <span className="font-light text-[14px] lg:text-[24px] leading-none">
+      <span className="font-stanley font-light text-[14px] lg:text-[24px] leading-none">
         {name}
       </span>
     </div>
