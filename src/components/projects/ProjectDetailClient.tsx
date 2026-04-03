@@ -31,7 +31,7 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
 
   return (
     <>
-      <div className="fixed top-[28px] sm:top-[52px] md:top-7 left-9 z-65">
+      <div className="fixed top-7 left-9 z-65">
         <NostLogo />
       </div>
 

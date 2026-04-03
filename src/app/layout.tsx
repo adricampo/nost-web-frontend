@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import Providers from '@/components/layout/Providers';
 import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION } from '@/lib/site';
@@ -21,6 +21,10 @@ const apercu = localFont({
   variable: '--font-apercu',
   display: 'swap'
 });
+
+export const viewport: Viewport = {
+  viewportFit: 'cover'
+};
 
 export const metadata: Metadata = {
   title: {
