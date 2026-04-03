@@ -38,7 +38,7 @@ export default async function ContactPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-bg">
-      <div className="fixed z-[65] top-7 left-9">
+      <div className="fixed z-[65] left-9" style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}>
         <NostLogo />
       </div>
 

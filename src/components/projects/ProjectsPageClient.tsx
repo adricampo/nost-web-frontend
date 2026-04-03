@@ -14,7 +14,7 @@ interface Props {
 export default function ProjectsPageClient({ projects, children }: Props) {
   return (
     <div className="min-h-screen flex flex-col bg-bg">
-      <div className="fixed top-7 left-9 z-65">
+      <div className="fixed left-9 z-65" style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}>
         <NostLogo />
       </div>
 

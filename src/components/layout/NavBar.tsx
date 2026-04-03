@@ -69,8 +69,8 @@ export default function NavBar({
         className="hidden md:grid md:grid-cols-[50%_1fr] items-stretch"
         style={{
           padding: pageBackground
-            ? `28px 36px ${paddingBottom ?? 65}px`
-            : '28px 36px 0'
+            ? `calc(28px + env(safe-area-inset-top, 0px)) 36px ${paddingBottom ?? 65}px`
+            : `calc(28px + env(safe-area-inset-top, 0px)) 36px 0`
         }}
       >
         <div />
@@ -116,8 +116,8 @@ export default function NavBar({
         className="md:hidden flex flex-col pointer-events-auto"
         style={{
           padding: pageBackground
-            ? `28px 36px ${paddingBottom ?? 20}px`
-            : '28px 36px 0'
+            ? `calc(28px + env(safe-area-inset-top, 0px)) 36px ${paddingBottom ?? 20}px`
+            : `calc(28px + env(safe-area-inset-top, 0px)) 36px 0`
         }}
       >
         {showInfoButton ? (

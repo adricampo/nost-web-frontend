@@ -31,7 +31,7 @@ export default async function LandingPage() {
 
       <div className="absolute inset-0 bg-black/5" />
 
-      <div className="absolute top-7 left-9 z-10">
+      <div className="absolute left-9 z-10" style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}>
         <NostLogo />
       </div>
 
