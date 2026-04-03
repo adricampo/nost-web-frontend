@@ -1,6 +1,6 @@
 'use client';
 
-import { SITE_SHORT_NAME, FOOTER_BACK_TO_TOP } from '@/lib/site';
+import { SITE_NAME, FOOTER_BACK_TO_TOP } from '@/lib/site';
 
 interface Social {
   label: string;
@@ -29,7 +29,7 @@ export default function Footer({ socials = [] }: FooterProps) {
       </button>
 
       <div className="flex justify-between items-center">
-        <span className="tracking-[0.04em]">©{SITE_SHORT_NAME}</span>
+        <span className="tracking-[0.04em]">©{SITE_NAME}</span>
 
         <div>
           {socials.map(({ label, href }, i) => (
