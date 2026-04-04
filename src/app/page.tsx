@@ -18,7 +18,7 @@ export default async function LandingPage() {
 
   return (
     <>
-      <main className="landing-hero">
+      <main className="landing-hero" style={{ backgroundColor: '#F5F4F1' }}>
         {heroImageUrl && (
           <Image
             src={heroImageUrl}

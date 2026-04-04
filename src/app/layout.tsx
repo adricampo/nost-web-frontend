@@ -56,11 +56,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        {/* Explicit viewport meta guarantees viewport-fit=cover reaches iOS Safari
+      {/* <head> */}
+      {/* Explicit viewport meta guarantees viewport-fit=cover reaches iOS Safari
             independent of Next.js's viewport export rendering order. */}
-        {/* <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" /> */}
-      </head>
+      {/* <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" /> */}
+      {/* </head> */}
       <body className={`${stanley.variable} ${apercu.variable} antialiased`}>
         <Providers>{children}</Providers>
       </body>
