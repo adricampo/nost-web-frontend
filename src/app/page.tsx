@@ -48,11 +48,10 @@ export default async function LandingPage() {
       <div
         style={{
           top: 'calc(-1 * env(safe-area-inset-top, 0px))',
-          bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
           paddingLeft: 80,
           paddingRight: 36,
           backgroundColor: '#F5F4F1',
-          paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 64px)'
+          paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 200px)'
         }}
         aria-hidden="true"
       />
