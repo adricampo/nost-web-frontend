@@ -26,10 +26,22 @@ export default function MenuOverlay() {
   useEffect(() => {
     const html = document.documentElement;
     const setThemeColor = (color: string) => {
-      document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach(
-        (el) => { el.content = color; }
-      );
+      document
+        .querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')
+        .forEach((el) => {
+          el.content = color;
+        });
     };
+
+    // On the landing page: skip html.menu-open and body.overflow (the hero is
+    // position:fixed so no scroll needed). Explicitly set theme-color so iOS
+    // Safari's toolbar reverts to beige after close instead of staying navy.
+    if (window.location.pathname === '/') {
+      setThemeColor(isOpen ? NAVY : PAGE_BG);
+      return () => {
+        setThemeColor(PAGE_BG);
+      };
+    }
 
     if (isOpen) {
       html.classList.add('menu-open');

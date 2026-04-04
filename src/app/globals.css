@@ -48,9 +48,9 @@ html.menu-open body {
   can read the navy body background for toolbar colour. The menu overlay (z-80)
   already covers the full screen, so this is invisible to the user.
 */
-html.menu-open .landing-hero {
+/* html.menu-open .landing-hero {
   visibility: hidden;
-}
+} */
 
 /*
   Landing hero: fixed full-screen container.
