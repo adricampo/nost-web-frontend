@@ -32,7 +32,10 @@ export default async function LandingPage() {
 
         <div className="absolute inset-0 bg-black/5" />
 
-        <div className="absolute left-9 z-10" style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}>
+        <div
+          className="absolute left-9 z-10"
+          style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}
+        >
           <NostLogo />
         </div>
 
@@ -42,7 +45,15 @@ export default async function LandingPage() {
       {/* Invisible spacer: makes the body 1px scrollable so that when the MENU
           button is tapped, window.scrollTo(0,1) in Providers can collapse the
           iOS Safari browser toolbar. Has no visual effect — hero is position:fixed. */}
-      <div style={{ height: 'calc(100vh + 20px)' }} aria-hidden="true" />
+      <div
+        style={{
+          top: 'calc(-1 * env(safe-area-inset-top, 0px))',
+          bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
+          paddingTop: 'calc(env(safe-area-inset-top, 0px) + 28px)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 28px)'
+        }}
+        aria-hidden="true"
+      />
     </>
   );
 }
