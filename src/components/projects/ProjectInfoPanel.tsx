@@ -14,8 +14,7 @@ const INFO_FIELDS: { key: keyof Project; label: string }[] = [
   { key: 'location', label: 'Location' },
   { key: 'completedYear', label: 'Completed' },
   { key: 'size', label: 'Size' },
-  { key: 'photography', label: 'Photography' },
-  { key: 'press', label: 'Press' }
+  { key: 'photography', label: 'Photography' }
 ];
 
 const PANEL_TRANSITION = { duration: 0.35, ease: [0.25, 0, 0, 1] } as const;
@@ -78,6 +77,29 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
                     </span>
                   </div>
                 ))}
+
+                {project.press && project.press.length > 0 && (
+                  <div className="flex flex-row gap-6 items-start">
+                    <span className="shrink-0 uppercase tracking-widest text-xs min-w-28 lg:min-w-35 font-apercu pt-0.5">
+                      Press:
+                    </span>
+                    <p className="font-light text-base leading-5">
+                      {project.press.map((item, i) => (
+                        <span key={item.id}>
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:opacity-70 transition-opacity"
+                          >
+                            {item.name}
+                          </a>
+                          {i < project.press!.length - 1 && ', '}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                )}
 
                 {project.description && (
                   <div className="flex gap-6 mt-30">

@@ -21,6 +21,12 @@ export interface GalleryBlock {
   blockTextAlign?: 'left' | 'center' | 'right';
 }
 
+export interface PressItem {
+  id: number;
+  name: string;
+  url: string;
+}
+
 export interface Project {
   id: number;
   documentId: string;
@@ -34,7 +40,7 @@ export interface Project {
   completedYear?: string;
   size?: string;
   photography?: string;
-  press?: string;
+  press?: PressItem[];
   description?: string;
   order?: number;
 }

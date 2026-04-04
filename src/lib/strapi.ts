@@ -29,7 +29,7 @@ export async function getProjects(): Promise<Project[]> {
 
 export async function getProject(slug: string): Promise<Project> {
   const results = await fetchStrapi<Project[]>(
-    `/projects?filters[slug][$eq]=${slug}&populate[galleryBlocks][fields][0]=blockText&populate[galleryBlocks][fields][1]=blockTextAlign&populate[galleryBlocks][populate][images][populate]=*`
+    `/projects?filters[slug][$eq]=${slug}&populate[galleryBlocks][fields][0]=blockText&populate[galleryBlocks][fields][1]=blockTextAlign&populate[galleryBlocks][populate][images][populate]=*&populate[press]=*`
   );
   return results[0];
 }
