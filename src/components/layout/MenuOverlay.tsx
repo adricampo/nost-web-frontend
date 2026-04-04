@@ -31,17 +31,11 @@ export default function MenuOverlay() {
       );
     };
 
-    // On the landing page: skip html.menu-open and body.overflow (the hero is
-    // position:fixed so no scroll needed). Explicitly set theme-color so iOS
-    // Safari's toolbar reverts to beige after close instead of staying navy.
-    if (window.location.pathname === '/') {
-      setThemeColor(isOpen ? NAVY : PAGE_BG);
-      return () => { setThemeColor(PAGE_BG); };
-    }
-
     if (isOpen) {
       html.classList.add('menu-open');
-      document.body.style.overflow = 'hidden';
+      // Skip body.overflow on the landing page — the hero is position:fixed
+      // so there is nothing to scroll lock.
+      if (window.location.pathname !== '/') document.body.style.overflow = 'hidden';
       setThemeColor(NAVY);
     } else {
       html.classList.remove('menu-open');
