@@ -31,15 +31,17 @@ export default function MenuOverlay() {
     // and prevents it from reverting to auto-detection after close.
     // The overlay panel (z-80) already covers the full screen visually, so
     // neither body-background nor theme-color tricks are needed there.
-    const isLanding = window.location.pathname === '/';
+    // On the landing page skip ALL DOM side-effects (class, overflow, theme-color).
+    // Any JS touch to these — even restoring to the original value — causes iOS
+    // Safari to lock the toolbar colour and prevents auto-detection from reverting.
+    // The landing hero is position:fixed so there is nothing to scroll anyway.
+    if (window.location.pathname === '/') return;
 
-    const themeColor = isLanding
-      ? null
-      : document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
     const originalThemeColor = themeColor?.content ?? '';
 
     if (isOpen) {
-      if (!isLanding) html.classList.add('menu-open');
+      html.classList.add('menu-open');
       document.body.style.overflow = 'hidden';
       if (themeColor) themeColor.content = NAVY;
     } else {
