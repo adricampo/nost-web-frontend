@@ -20,22 +20,25 @@ export default function MenuOverlay() {
   const { isOpen, close } = useMenu();
   const router = useRouter();
 
-  // When the menu is open, set html/body background to navy so the transparent
-  // iOS Safari status bar (and any gap between the overlay and safe areas) shows
-  // navy instead of the page background colour.
+  // When the menu opens: add .menu-open to <html> (CSS forces navy background
+  // everywhere via globals.css) and update theme-color so iOS Safari's browser
+  // chrome (status bar, toolbar) adopts the navy colour.
   useEffect(() => {
     const html = document.documentElement;
-    const body = document.body;
+    const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    const originalThemeColor = themeColor?.content ?? '';
+
     if (isOpen) {
-      html.style.backgroundColor = NAVY;
-      body.style.backgroundColor = NAVY;
+      html.classList.add('menu-open');
+      if (themeColor) themeColor.content = NAVY;
     } else {
-      html.style.backgroundColor = '';
-      body.style.backgroundColor = '';
+      html.classList.remove('menu-open');
+      if (themeColor) themeColor.content = originalThemeColor;
     }
+
     return () => {
-      html.style.backgroundColor = '';
-      body.style.backgroundColor = '';
+      html.classList.remove('menu-open');
+      if (themeColor) themeColor.content = originalThemeColor;
     };
   }, [isOpen]);
 

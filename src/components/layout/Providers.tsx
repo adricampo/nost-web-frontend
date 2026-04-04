@@ -21,12 +21,15 @@ export function useMenu() {
   return useContext(MenuContext);
 }
 
-// Called synchronously inside the MENU button click handler so iOS Safari
-// treats it as a user-initiated scroll — this collapses the browser toolbar
-// on non-scrollable pages (e.g. the fixed-layout landing page).
+// Called synchronously inside the MENU button click handler (user gesture
+// context) so iOS Safari treats it as a user-initiated scroll and collapses
+// the browser toolbar. Only runs on the landing page where the body is
+// non-scrollable by default and a spacer div makes 10px of scroll available.
 function collapseIOSSafariToolbar() {
-  if (typeof window !== 'undefined' && window.scrollY === 0) {
-    window.scrollTo(0, 1);
+  if (typeof window !== 'undefined' &&
+      window.location.pathname === '/' &&
+      window.scrollY === 0) {
+    window.scrollTo(0, 10);
   }
 }
 

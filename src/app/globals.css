@@ -33,6 +33,17 @@
 }
 
 /*
+  When the menu overlay is open, force navy background on html and body.
+  The iOS Safari status bar (transparent) and the area adjacent to the browser
+  toolbar both inherit this color, making the overlay appear full-screen.
+  !important is required to override the body { background-color } rule.
+*/
+html.menu-open,
+html.menu-open body {
+  background-color: var(--color-navy) !important;
+}
+
+/*
   Landing hero: fixed full-screen container.
   Uses inset: 0 (top/right/bottom/left: 0) so that when viewport-fit=cover
   is active (set via <meta> in layout.tsx) the element extends behind the iOS
