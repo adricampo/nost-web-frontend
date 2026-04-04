@@ -25,16 +25,21 @@ export default function MenuOverlay() {
   // chrome (status bar, toolbar) adopts the navy colour.
   useEffect(() => {
     const html = document.documentElement;
-    // On the landing page, never touch theme-color: iOS auto-detects the hero
-    // image colour, and a dynamic update locks the toolbar to navy even after close.
+    // On the landing page: skip both html.menu-open and theme-color changes.
+    // iOS auto-detects toolbar colour from the hero image. Any JS touch to
+    // theme-color — even restoring the same value — locks iOS into that colour
+    // and prevents it from reverting to auto-detection after close.
+    // The overlay panel (z-80) already covers the full screen visually, so
+    // neither body-background nor theme-color tricks are needed there.
     const isLanding = window.location.pathname === '/';
+
     const themeColor = isLanding
       ? null
       : document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
     const originalThemeColor = themeColor?.content ?? '';
 
     if (isOpen) {
-      html.classList.add('menu-open');
+      if (!isLanding) html.classList.add('menu-open');
       document.body.style.overflow = 'hidden';
       if (themeColor) themeColor.content = NAVY;
     } else {
