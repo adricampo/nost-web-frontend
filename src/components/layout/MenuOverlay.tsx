@@ -25,7 +25,9 @@ export default function MenuOverlay() {
   // chrome (status bar, toolbar) adopts the navy colour.
   useEffect(() => {
     const html = document.documentElement;
-    const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    const themeColor = document.querySelector<HTMLMetaElement>(
+      'meta[name="theme-color"]'
+    );
     const originalThemeColor = themeColor?.content ?? '';
 
     if (isOpen) {
@@ -71,8 +73,9 @@ export default function MenuOverlay() {
               bottom: -120,
               paddingLeft: 80,
               paddingRight: 36,
-              paddingTop: 'calc(120px + env(safe-area-inset-top, 0px) + 28px)',
-              paddingBottom: 'calc(120px + env(safe-area-inset-bottom, 0px) + 64px)'
+              paddingTop: 'calc(-1 * env(safe-area-inset-top, 0px) + 28px)',
+              paddingBottom:
+                'calc(-1 * env(safe-area-inset-bottom, 0px) + 64px)'
             }}
           >
             {/* Top bar: Menu label + Close button */}
