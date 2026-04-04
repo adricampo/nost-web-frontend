@@ -45,8 +45,9 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
             style={{
               top: -120,
               bottom: -120,
-              paddingTop: 'calc(120px + env(safe-area-inset-top, 0px) + 28px)',
-              paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 28px)'
+              paddingTop: 'calc(-1 * env(safe-area-inset-top, 0px) + 28px)',
+              paddingBottom:
+                'calc(-1 * env(safe-area-inset-bottom, 0px) + 28px)'
             }}
           >
             {/* Mirrors NavBar 2-row structure: row1 spacer (h-3) + gap-3 + row2 (h-7) */}
