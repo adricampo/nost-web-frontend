@@ -18,7 +18,7 @@ export default async function LandingPage() {
 
   return (
     <>
-      <main className="landing-hero" style={{ backgroundColor: '#F5F4F1' }}>
+      <main className="landing-hero">
         {heroImageUrl && (
           <Image
             src={heroImageUrl}
@@ -45,7 +45,7 @@ export default async function LandingPage() {
       {/* Invisible spacer: makes the body 1px scrollable so that when the MENU
           button is tapped, window.scrollTo(0,1) in Providers can collapse the
           iOS Safari browser toolbar. Has no visual effect — hero is position:fixed. */}
-      <div
+      {/* <div
         style={{
           top: 'calc(-1 * env(safe-area-inset-top, 0px))',
           bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
@@ -55,7 +55,7 @@ export default async function LandingPage() {
           paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 200px)'
         }}
         aria-hidden="true"
-      />
+      /> */}
     </>
   );
 }
