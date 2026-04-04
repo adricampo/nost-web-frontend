@@ -32,14 +32,17 @@ export default function MenuOverlay() {
 
     if (isOpen) {
       html.classList.add('menu-open');
+      document.body.style.overflow = 'hidden';
       if (themeColor) themeColor.content = NAVY;
     } else {
       html.classList.remove('menu-open');
+      document.body.style.overflow = '';
       if (themeColor) themeColor.content = originalThemeColor;
     }
 
     return () => {
       html.classList.remove('menu-open');
+      document.body.style.overflow = '';
       if (themeColor) themeColor.content = originalThemeColor;
     };
   }, [isOpen]);

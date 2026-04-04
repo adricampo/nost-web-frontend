@@ -30,7 +30,7 @@ export default async function LandingPage() {
           />
         )}
 
-        <div className="absolute inset-0 bg-black/5" />
+        {/* <div className="absolute inset-0 bg-black/5" /> */}
 
         <div
           className="absolute left-9 z-10"
