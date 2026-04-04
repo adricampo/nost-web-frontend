@@ -45,18 +45,17 @@ export default async function LandingPage() {
       {/* Invisible spacer: makes the body 1px scrollable so that when the MENU
           button is tapped, window.scrollTo(0,1) in Providers can collapse the
           iOS Safari browser toolbar. Has no visual effect — hero is position:fixed. */}
-      {/* <div
+      <div
         style={{
           top: 'calc(-1 * env(safe-area-inset-top, 0px))',
           bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
           paddingLeft: 80,
           paddingRight: 36,
           backgroundColor: '#F5F4F1',
-          paddingTop: 'calc(env(safe-area-inset-top, 0px) + 28px)',
           paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 64px)'
         }}
         aria-hidden="true"
-      /> */}
+      />
     </>
   );
 }
