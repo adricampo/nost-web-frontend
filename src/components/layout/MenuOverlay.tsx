@@ -33,9 +33,7 @@ export default function MenuOverlay() {
 
     if (isOpen) {
       html.classList.add('menu-open');
-      // Skip body.overflow on the landing page — the hero is position:fixed
-      // so there is nothing to scroll lock.
-      if (window.location.pathname !== '/') document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
       setThemeColor(NAVY);
     } else {
       html.classList.remove('menu-open');

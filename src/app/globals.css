@@ -44,6 +44,15 @@ html.menu-open body {
 }
 
 /*
+  When the menu is open on the landing page, hide the fixed hero so iOS Safari
+  can read the navy body background for toolbar colour. The menu overlay (z-80)
+  already covers the full screen, so this is invisible to the user.
+*/
+html.menu-open .landing-hero {
+  visibility: hidden;
+}
+
+/*
   Landing hero: fixed full-screen container.
   Uses inset: 0 (top/right/bottom/left: 0) so that when viewport-fit=cover
   is active (set via <meta> in layout.tsx) the element extends behind the iOS
