@@ -26,7 +26,7 @@ export default async function LandingPage() {
             fill
             priority
             className="object-cover"
-            sizes="100vw"
+            sizes="100vw 100vh"
           />
         )}
 
