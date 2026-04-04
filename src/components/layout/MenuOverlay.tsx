@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMenu } from './Providers';
-import { NAVY } from '@/lib/site';
+import { NAVY, PAGE_BG } from '@/lib/site';
 
 const NAV_ITEMS = [
   { label: 'Projects', href: '/projects' },
@@ -25,19 +25,23 @@ export default function MenuOverlay() {
   // chrome (status bar, toolbar) adopts the navy colour.
   useEffect(() => {
     const html = document.documentElement;
-    // On the landing page: skip both html.menu-open and theme-color changes.
-    // iOS auto-detects toolbar colour from the hero image. Any JS touch to
-    // theme-color — even restoring the same value — locks iOS into that colour
-    // and prevents it from reverting to auto-detection after close.
-    // The overlay panel (z-80) already covers the full screen visually, so
-    // neither body-background nor theme-color tricks are needed there.
-    // On the landing page skip ALL DOM side-effects (class, overflow, theme-color).
-    // Any JS touch to these — even restoring to the original value — causes iOS
-    // Safari to lock the toolbar colour and prevents auto-detection from reverting.
-    // The landing hero is position:fixed so there is nothing to scroll anyway.
-    if (window.location.pathname === '/') return;
-
     const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+
+    // On the landing page: skip html.menu-open and body.overflow (the hero is
+    // position:fixed so no scroll needed). Manage theme-color explicitly so iOS
+    // Safari's toolbar reverts to light after close — PAGE_BG forces iOS out of
+    // the "locked navy" state that auto-detection would otherwise keep.
+    if (window.location.pathname === '/') {
+      if (isOpen) {
+        if (themeColor) themeColor.content = NAVY;
+      } else {
+        if (themeColor) themeColor.content = PAGE_BG;
+      }
+      return () => {
+        if (themeColor) themeColor.content = PAGE_BG;
+      };
+    }
+
     const originalThemeColor = themeColor?.content ?? '';
 
     if (isOpen) {
