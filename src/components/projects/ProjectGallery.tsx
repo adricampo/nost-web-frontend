@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Image from 'next/image';
 import { getStrapiImageUrl } from '@/lib/strapi';
 import type { GalleryBlock, GalleryImage } from '@/lib/types';
@@ -38,7 +39,7 @@ function blockTextAlignStyle(align?: string): React.CSSProperties {
 function GalleryGrid({ images }: { images: GalleryImage[] }) {
   return (
     <div
-      className="grid grid-cols-12 gap-4"
+      className="flex flex-col gap-4 sm:grid sm:grid-cols-12 sm:gap-4"
       style={{ gridAutoRows: GRID_AUTO_ROWS }}
     >
       {images.map((item) => {
@@ -49,30 +50,48 @@ function GalleryGrid({ images }: { images: GalleryImage[] }) {
           ...(item.colStart ? { gridColumnStart: item.colStart } : {})
         };
 
+        // Spacers: only needed for desktop grid positioning, hidden on mobile
         if (!item.image) {
           return (
             <div
               key={item.id}
-              className={LAYOUT_CLASSES[item.layout]}
+              className={`${LAYOUT_CLASSES[item.layout]} hidden sm:block`}
               style={gridRowStyle}
             />
           );
         }
 
+        const imageUrl = getStrapiImageUrl(item.image.url);
+        const imageAlt = item.image.alternativeText || '';
+
         return (
-          <div
-            key={item.id}
-            className={`${LAYOUT_CLASSES[item.layout]} relative overflow-hidden`}
-            style={gridRowStyle}
-          >
-            <Image
-              src={getStrapiImageUrl(item.image.url)}
-              alt={item.image.alternativeText || ''}
-              fill
-              sizes={SIZES[item.layout]}
-              className="object-cover"
-            />
-          </div>
+          <Fragment key={item.id}>
+            {/* Mobile (<640px): natural image sizing, full width, no cropping */}
+            <div className="sm:hidden w-full">
+              <Image
+                src={imageUrl}
+                alt={imageAlt}
+                width={item.image.width}
+                height={item.image.height}
+                className="w-full h-auto"
+                sizes="100vw"
+              />
+            </div>
+
+            {/* sm+: fill image inside grid cell, mosaic layout preserved */}
+            <div
+              className={`hidden sm:block ${LAYOUT_CLASSES[item.layout]} relative overflow-hidden`}
+              style={gridRowStyle}
+            >
+              <Image
+                src={imageUrl}
+                alt={imageAlt}
+                fill
+                sizes={SIZES[item.layout]}
+                className="object-cover"
+              />
+            </div>
+          </Fragment>
         );
       })}
     </div>

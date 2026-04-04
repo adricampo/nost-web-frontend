@@ -21,14 +21,26 @@ export function useMenu() {
   return useContext(MenuContext);
 }
 
+// Called synchronously inside the MENU button click handler so iOS Safari
+// treats it as a user-initiated scroll — this collapses the browser toolbar
+// on non-scrollable pages (e.g. the fixed-layout landing page).
+function collapseIOSSafariToolbar() {
+  if (typeof window !== 'undefined' && window.scrollY === 0) {
+    window.scrollTo(0, 1);
+  }
+}
+
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const ctx: MenuContextType = {
     isOpen,
-    open: () => setIsOpen(true),
+    open: () => { collapseIOSSafariToolbar(); setIsOpen(true); },
     close: () => setIsOpen(false),
-    toggle: () => setIsOpen((v) => !v),
+    toggle: () => {
+      if (!isOpen) collapseIOSSafariToolbar();
+      setIsOpen((v) => !v);
+    },
   };
 
   return (

@@ -7,7 +7,7 @@ export default function Icon() {
   return new ImageResponse(
     <div
       style={{
-        background: '#13136B',
+        background: '#00065C',
         width: '100%',
         height: '100%',
         display: 'flex',
@@ -17,7 +17,7 @@ export default function Icon() {
         fontSize: 22,
         fontFamily: 'Georgia, serif',
         fontWeight: 400,
-        paddingBottom: 2,
+        paddingBottom: 2
       }}
     >
       N

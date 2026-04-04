@@ -23,45 +23,45 @@ Built with Next.js 15 and connected to a Strapi v4 CMS backend for all dynamic c
 
 ```
 src/
-├── app/                        
-│   ├── page.tsx                
+├── app/
+│   ├── page.tsx
 │   ├── projects/
-│   │   ├── page.tsx            
-│   │   └── [slug]/page.tsx     
-│   ├── the-studio/page.tsx     
-│   ├── contact/page.tsx        
-│   ├── fonts/                  
-│   ├── layout.tsx              
-│   ├── globals.css             
-│   └── icon.tsx                
+│   │   ├── page.tsx
+│   │   └── [slug]/page.tsx
+│   ├── the-studio/page.tsx
+│   ├── contact/page.tsx
+│   ├── fonts/
+│   ├── layout.tsx
+│   ├── globals.css
+│   └── icon.tsx
 │
 ├── components/
 │   ├── layout/
-│   │   ├── NavBar.tsx          
-│   │   ├── MenuOverlay.tsx     
-│   │   ├── Footer.tsx          
-│   │   ├── FooterWrapper.tsx   
-│   │   ├── NostLogo.tsx        
-│   │   └── Providers.tsx       
+│   │   ├── NavBar.tsx
+│   │   ├── MenuOverlay.tsx
+│   │   ├── Footer.tsx
+│   │   ├── FooterWrapper.tsx
+│   │   ├── NostLogo.tsx
+│   │   └── Providers.tsx
 │   │
 │   ├── projects/
-│   │   ├── ProjectsPageClient.tsx   
-│   │   ├── ProjectCard.tsx          
-│   │   ├── ProjectDetailClient.tsx  
-│   │   ├── ProjectGallery.tsx       
-│   │   └── ProjectInfoPanel.tsx     
+│   │   ├── ProjectsPageClient.tsx
+│   │   ├── ProjectCard.tsx
+│   │   ├── ProjectDetailClient.tsx
+│   │   ├── ProjectGallery.tsx
+│   │   └── ProjectInfoPanel.tsx
 │   │
 │   └── studio/
-│       ├── StudioIntroSection.tsx        
-│       ├── StudioDescriptionSection.tsx  
-│       ├── StudioTeamSection.tsx         
-│       └── StudioWorkshopSection.tsx     
+│       ├── StudioIntroSection.tsx
+│       ├── StudioDescriptionSection.tsx
+│       ├── StudioTeamSection.tsx
+│       └── StudioWorkshopSection.tsx
 │
 └── lib/
-    ├── site.ts     
-    ├── strapi.ts   
-    ├── types.ts    
-    └── utils.ts    
+    ├── site.ts
+    ├── strapi.ts
+    ├── types.ts
+    └── utils.ts
 ```
 
 ---
@@ -86,7 +86,6 @@ Each project has an array of **GalleryBlocks**. Every block contains:
 - `images` — array of `GalleryImage` with layout (`small` / `medium` / `large` / `xl`) and optional grid position overrides
 - `blockText` — optional text shown below the image grid
 - `blockTextAlign` — text alignment (`left` / `center` / `right`)
-
 
 ## Getting Started
 
@@ -119,7 +118,7 @@ npm start
 
 | Token        | Value     | Usage                        |
 | ------------ | --------- | ---------------------------- |
-| `navy`       | `#13136B` | Primary — backgrounds, text  |
+| `navy`       | `#00065C` | Primary — backgrounds, text  |
 | `navy-muted` | `#9999BB` | Secondary text, placeholders |
 | `bg`         | `#F5F4F1` | Page background              |
 

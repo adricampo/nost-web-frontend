@@ -26,7 +26,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: '#13136B'
+  themeColor: '#00065C'
 };
 
 export const metadata: Metadata = {
@@ -56,6 +56,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Explicit meta tags guarantee viewport-fit=cover and theme-color reach
+            iOS Safari, independent of Next.js's viewport export rendering order. */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="theme-color" content="#00065C" />
+      </head>
       <body className={`${stanley.variable} ${apercu.variable} antialiased`}>
         <Providers>{children}</Providers>
       </body>

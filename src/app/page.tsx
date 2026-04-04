@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import NostLogo from '@/components/layout/NostLogo';
 import NavBar from '@/components/layout/NavBar';
-import SafariScrollFix from '@/components/layout/SafariScrollFix';
 import { getLanding, getStrapiImageUrl } from '@/lib/strapi';
 import { SITE_NAME, SITE_TAGLINE } from '@/lib/site';
 
@@ -40,11 +39,10 @@ export default async function LandingPage() {
         <NavBar />
       </main>
 
-      {/* Invisible spacer: gives the body 1px of scrollable height so iOS Safari
-          can collapse its browser toolbar. Has no visual effect since the hero is
-          position: fixed and covers everything. */}
+      {/* Invisible spacer: makes the body 1px scrollable so that when the MENU
+          button is tapped, window.scrollTo(0,1) in Providers can collapse the
+          iOS Safari browser toolbar. Has no visual effect — hero is position:fixed. */}
       <div style={{ height: 'calc(100vh + 2px)' }} aria-hidden="true" />
-      <SafariScrollFix />
     </>
   );
 }

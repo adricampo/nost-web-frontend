@@ -6,6 +6,7 @@ You are the project lead. All decisions — design, architecture, direction — 
 My role is to execute them with precision, honesty and craftsmanship.
 
 **What this means in practice:**
+
 - I will never make changes beyond what you ask for. No "while I'm at it" refactors.
 - If I spot something wrong or suboptimal that you haven't mentioned, I flag it — I don't fix it silently.
 - If a request is technically risky (e.g. destructive git operations, breaking changes to APIs), I explain the risk and ask before proceeding.
@@ -30,11 +31,13 @@ My role is to execute them with precision, honesty and craftsmanship.
 ## Architecture rules
 
 ### Server vs Client components
+
 - Pages are **server components** — they fetch data and pass it down as props.
 - Interactive components (animations, state, event handlers) are **client components** — marked `'use client'` at the top.
 - Never fetch data inside a client component. Pass it as props from the server.
 
 ### Data fetching
+
 All Strapi calls live in `src/lib/strapi.ts`. Never call the Strapi API directly from a component.
 
 In dev: `cache: 'no-store'` (always fresh).
@@ -43,6 +46,7 @@ In prod: `revalidate: 3600` (1-hour ISR).
 Strapi errors are caught at the page level and logged with `console.error('[Strapi]', e)` in non-production. Pages degrade gracefully — never crash.
 
 ### Types
+
 All content types are defined in `src/lib/types.ts`. Strapi response shapes go here and nowhere else.
 
 ---
@@ -94,26 +98,27 @@ src/
 
 ### Colours — always use tokens, never hex in components
 
-| Tailwind class | Value | Use |
-|---|---|---|
-| `bg-navy` / `text-navy` | `#13136B` | Primary backgrounds, text |
-| `text-navy-muted` | `#9999BB` | Secondary text, placeholders |
-| `bg-bg` | `#F5F4F1` | Page background |
+| Tailwind class          | Value     | Use                          |
+| ----------------------- | --------- | ---------------------------- |
+| `bg-navy` / `text-navy` | `#00065C` | Primary backgrounds, text    |
+| `text-navy-muted`       | `#9999BB` | Secondary text, placeholders |
+| `bg-bg`                 | `#F5F4F1` | Page background              |
 
 `PAGE_BG` in `src/lib/site.ts` holds `#F5F4F1` for use in JS contexts (e.g. NavBar `pageBackground` prop).
 
 ### Typography
 
-| Font | CSS var | Tailwind class | Use |
-|---|---|---|---|
-| Stanley | `--font-stanley` | `font-stanley` | Body default (set on `body`) |
-| Apercu | `--font-apercu` | `font-apercu` | NavBar, Footer, labels, captions |
+| Font    | CSS var          | Tailwind class | Use                              |
+| ------- | ---------------- | -------------- | -------------------------------- |
+| Stanley | `--font-stanley` | `font-stanley` | Body default (set on `body`)     |
+| Apercu  | `--font-apercu`  | `font-apercu`  | NavBar, Footer, labels, captions |
 
 Font files are in `src/app/fonts/` and loaded via `next/font/local` in `layout.tsx`.
 
 ### Layout
 
 The **50vw split** is the core layout principle of this site:
+
 - NavBar: `grid-cols-[50%_1fr]` — left half empty, right half contains content
 - Page content: `paddingLeft: '50vw'` or `style={{ gridTemplateColumns: '50% 1fr' }}`
 - This ensures all content starts at exactly the **horizontal midpoint** of the viewport
@@ -128,6 +133,7 @@ The **50vw split** is the core layout principle of this site:
 **Never pass:** removed props (`projectCode`, `projectTitle`, `breadcrumbAlign`, `centerSlotLeft`)
 
 **Grid:** `grid-cols-[50%_1fr] items-stretch`
+
 - Left cell: empty spacer
 - Right cell: `flex justify-between items-start h-full`
   - Left side: breadcrumb or `centerSlot` (starts at 50vw)
@@ -144,6 +150,7 @@ The **50vw split** is the core layout principle of this site:
 `populate=*` is **shallow**. It does NOT populate media inside nested components.
 
 For gallery blocks with nested images:
+
 ```
 populate[galleryBlocks][fields][0]=blockText
 &populate[galleryBlocks][fields][1]=blockTextAlign
@@ -157,11 +164,11 @@ Always use explicit field paths when dealing with nested components.
 
 ## Constants — where strings live
 
-| What | Where |
-|---|---|
-| Site name, tagline, description, email | `src/lib/site.ts` (from `NEXT_PUBLIC_*` env vars) |
-| Page background colour | `src/lib/site.ts` → `PAGE_BG` |
-| UI messages (no content, copyright, back to top) | `src/lib/site.ts` |
+| What                                                 | Where                                                    |
+| ---------------------------------------------------- | -------------------------------------------------------- |
+| Site name, tagline, description, email               | `src/lib/site.ts` (from `NEXT_PUBLIC_*` env vars)        |
+| Page background colour                               | `src/lib/site.ts` → `PAGE_BG`                            |
+| UI messages (no content, copyright, back to top)     | `src/lib/site.ts`                                        |
 | Component-specific UI labels (Menu, Close, [+] Info) | Module-level constants at the top of each component file |
 
 Never write hardcoded strings or hex values directly inside JSX.
