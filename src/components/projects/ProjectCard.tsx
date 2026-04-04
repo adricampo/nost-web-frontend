@@ -13,7 +13,7 @@ export default function ProjectCard({ project, index = 0 }: Props) {
     ? getStrapiImageUrl(project.coverImage.url)
     : '/placeholder.jpg';
 
-  const isLarge = index % 2 === 0;
+  const isLarge = index % 2 !== 0;
 
   return (
     <Link href={`/projects/${project.slug}`} className="group block">
