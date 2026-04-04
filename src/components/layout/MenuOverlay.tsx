@@ -20,44 +20,39 @@ export default function MenuOverlay() {
   const { isOpen, close } = useMenu();
   const router = useRouter();
 
-  // When the menu opens: add .menu-open to <html> (CSS forces navy background
-  // everywhere via globals.css) and update theme-color so iOS Safari's browser
-  // chrome (status bar, toolbar) adopts the navy colour.
+  // Update every theme-color meta (Next.js may inject more than one) and
+  // add .menu-open to <html> so iOS Safari's toolbar and body background adopt
+  // the right colour.
   useEffect(() => {
     const html = document.documentElement;
-    const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    const setThemeColor = (color: string) => {
+      document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach(
+        (el) => { el.content = color; }
+      );
+    };
 
     // On the landing page: skip html.menu-open and body.overflow (the hero is
-    // position:fixed so no scroll needed). Manage theme-color explicitly so iOS
-    // Safari's toolbar reverts to light after close — PAGE_BG forces iOS out of
-    // the "locked navy" state that auto-detection would otherwise keep.
+    // position:fixed so no scroll needed). Explicitly set theme-color so iOS
+    // Safari's toolbar reverts to beige after close instead of staying navy.
     if (window.location.pathname === '/') {
-      if (isOpen) {
-        if (themeColor) themeColor.content = NAVY;
-      } else {
-        if (themeColor) themeColor.content = PAGE_BG;
-      }
-      return () => {
-        if (themeColor) themeColor.content = PAGE_BG;
-      };
+      setThemeColor(isOpen ? NAVY : PAGE_BG);
+      return () => { setThemeColor(PAGE_BG); };
     }
-
-    const originalThemeColor = themeColor?.content ?? '';
 
     if (isOpen) {
       html.classList.add('menu-open');
       document.body.style.overflow = 'hidden';
-      if (themeColor) themeColor.content = NAVY;
+      setThemeColor(NAVY);
     } else {
       html.classList.remove('menu-open');
       document.body.style.overflow = '';
-      if (themeColor) themeColor.content = originalThemeColor;
+      setThemeColor(PAGE_BG);
     }
 
     return () => {
       html.classList.remove('menu-open');
       document.body.style.overflow = '';
-      if (themeColor) themeColor.content = originalThemeColor;
+      setThemeColor(PAGE_BG);
     };
   }, [isOpen]);
 
