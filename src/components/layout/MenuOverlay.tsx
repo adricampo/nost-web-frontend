@@ -67,12 +67,12 @@ export default function MenuOverlay() {
             transition={PANEL_TRANSITION}
             className="fixed right-0 z-80 bg-navy text-white flex flex-col w-full md:w-[50vw] md:min-w-80"
             style={{
-              top: 'calc(-1 * env(safe-area-inset-top, 0px))',
-              bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
+              top: -120,
+              bottom: -120,
               paddingLeft: 80,
               paddingRight: 36,
-              paddingTop: 'calc(env(safe-area-inset-top, 0px) + 28px)',
-              paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 64px)'
+              paddingTop: 'calc(120px + env(safe-area-inset-top, 0px) + 28px)',
+              paddingBottom: 'calc(120px + env(safe-area-inset-bottom, 0px) + 64px)'
             }}
           >
             {/* Top bar: Menu label + Close button */}
