@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMenu } from './Providers';
+import { NAVY } from '@/lib/site';
 
 const NAV_ITEMS = [
   { label: 'Projects', href: '/projects' },
@@ -17,6 +19,25 @@ const LABEL_CLOSE = 'Close';
 export default function MenuOverlay() {
   const { isOpen, close } = useMenu();
   const router = useRouter();
+
+  // When the menu is open, set html/body background to navy so the transparent
+  // iOS Safari status bar (and any gap between the overlay and safe areas) shows
+  // navy instead of the page background colour.
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    if (isOpen) {
+      html.style.backgroundColor = NAVY;
+      body.style.backgroundColor = NAVY;
+    } else {
+      html.style.backgroundColor = '';
+      body.style.backgroundColor = '';
+    }
+    return () => {
+      html.style.backgroundColor = '';
+      body.style.backgroundColor = '';
+    };
+  }, [isOpen]);
 
   const handleNav = (href: string) => {
     close();
