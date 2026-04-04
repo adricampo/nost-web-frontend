@@ -8,7 +8,7 @@ import { SITE_NAME, PAGE_BG } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: `Get in touch with ${SITE_NAME}. Contact us by phone, email or through our social media channels.`,
+  description: `Get in touch with ${SITE_NAME}. Contact us by phone, email or through our social media channels.`
 };
 
 export default async function ContactPage() {
@@ -25,30 +25,30 @@ export default async function ContactPage() {
         { label: 'T', value: contact.phone, href: undefined },
         { label: 'E', value: contact.email, href: `mailto:${contact.email}` },
         ...(contact.instagram
-          ? [{ label: 'IG', value: socialHandle(contact.instagram), href: contact.instagram }]
-          : []),
-        ...(contact.linkedin
-          ? [{ label: 'LI', value: socialHandle(contact.linkedin), href: contact.linkedin }]
-          : []),
-        ...(contact.pinterest
-          ? [{ label: 'PI', value: socialHandle(contact.pinterest), href: contact.pinterest }]
-          : []),
+          ? [
+              {
+                label: 'IG',
+                value: socialHandle(contact.instagram),
+                href: contact.instagram
+              }
+            ]
+          : [])
       ]
     : [];
 
   return (
     <div className="min-h-screen flex flex-col bg-bg">
-      <div className="fixed z-[65] left-9" style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}>
+      <div
+        className="fixed z-[65] left-9"
+        style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}
+      >
         <NostLogo />
       </div>
 
       <NavBar breadcrumb="Contact" pageBackground={PAGE_BG} />
 
-      <main
-        className="flex-1 pb-16 px-9 pt-[22vh] md:pl-[50vw]"
-      >
+      <main className="flex-1 pb-16 px-9 pt-[22vh] md:pl-[50vw]">
         <div className="flex flex-col gap-[10vh] md:gap-[18vh]">
-
           {contact?.tagline && (
             <p className="text-[18px] md:text-[20px] lg:text-[25px] leading-[30px] font-light lg:max-w-[620px]">
               {contact.tagline}
@@ -59,9 +59,7 @@ export default async function ContactPage() {
             <div className="flex flex-col">
               {fields.map(({ label, value, href }) => (
                 <div key={label} className="flex items-baseline">
-                  <span
-                    className="text-base leading-[37px] w-[80px] md:w-[80px] lg:w-[110px] shrink-0"
-                  >
+                  <span className="text-base leading-[37px] w-[80px] md:w-[80px] lg:w-[110px] shrink-0">
                     {label}:
                   </span>
                   {href ? (
@@ -74,13 +72,14 @@ export default async function ContactPage() {
                       {value}
                     </a>
                   ) : (
-                    <span className="text-[18px] md:text-[20px] lg:text-[25px] leading-[30px] font-light">{value}</span>
+                    <span className="text-[18px] md:text-[20px] lg:text-[25px] leading-[30px] font-light">
+                      {value}
+                    </span>
                   )}
                 </div>
               ))}
             </div>
           )}
-
         </div>
       </main>
 

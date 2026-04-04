@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import NavBar from '@/components/layout/NavBar';
 import NostLogo from '@/components/layout/NostLogo';
 import ProjectGallery from '@/components/projects/ProjectGallery';
@@ -36,7 +37,7 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
       </div>
 
       <NavBar
-        breadcrumb={`Projects — ${project.category}`}
+        breadcrumb={<><Link href="/projects" className="hover:opacity-70 transition-opacity">Projects</Link>{` — ${project.category}`}</>}
         centerSlot={
           <ProjectNavCenterSlot code={project.code} name={project.name} />
         }

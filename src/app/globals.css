@@ -58,8 +58,13 @@ html.menu-open body {
   overflow: hidden;
   margin-top: calc(-1 * env(safe-area-inset-top, 0px));
   margin-bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
-  /* background-color: var(--color-navy); */
 }
+/* .landing-hero {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+} */
 
 /*
   Projects grid: S T / T S alternating pattern — both horizontally and vertically.

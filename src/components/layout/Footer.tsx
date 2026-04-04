@@ -18,8 +18,7 @@ export default function Footer({ socials = [] }: FooterProps) {
 
   return (
     <footer
-      className="grid items-center font-apercu text-xs py-7 px-9 md:p-9"
-      style={{ gridTemplateColumns: '50% 1fr' }}
+      className="grid grid-cols-[35%_1fr] md:grid-cols-[50%_1fr] items-center font-apercu text-xs py-7 px-9 md:p-9"
     >
       <button
         onClick={scrollToTop}

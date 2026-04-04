@@ -1,10 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMenu } from './Providers';
 
 interface NavBarProps {
-  breadcrumb?: string;
+  breadcrumb?: React.ReactNode;
   centerSlot?: React.ReactNode;
   showInfoButton?: boolean;
   onInfoClick?: () => void;
@@ -18,6 +19,8 @@ const LABEL_CLOSE = 'Close';
 const LABEL_MORE_INFO = '[+] Info';
 const BTN_BASE =
   'p-0 m-0 border-0 bg-transparent appearance-none uppercase tracking-widest cursor-pointer leading-3 text-xs';
+
+const BREADCRUMB_CLASS = 'uppercase tracking-widest leading-3 text-xs';
 
 export default function NavBar({
   breadcrumb,
@@ -79,9 +82,7 @@ export default function NavBar({
           <div className="pointer-events-auto flex flex-col gap-3 min-h-[52px] justify-between">
             <div className="flex justify-between items-start">
               {breadcrumb && (
-                <span className="pointer-events-none uppercase tracking-widest leading-3 text-xs">
-                  {breadcrumb}
-                </span>
+                <span className={BREADCRUMB_CLASS}>{breadcrumb}</span>
               )}
               {menuButton}
             </div>
@@ -101,9 +102,7 @@ export default function NavBar({
             <div className="flex items-start">
               {centerSlot ??
                 (breadcrumb ? (
-                  <span className="pointer-events-none uppercase tracking-widest leading-3 text-xs">
-                    {breadcrumb}
-                  </span>
+                  <span className={BREADCRUMB_CLASS}>{breadcrumb}</span>
                 ) : null)}
             </div>
             <div className="flex flex-row gap-6 items-end">{menuButton}</div>
@@ -133,9 +132,7 @@ export default function NavBar({
               {menuButton}
             </div>
             {breadcrumb && (
-              <span className="mt-7 block uppercase tracking-widest leading-3 text-xs text-right">
-                {breadcrumb}
-              </span>
+              <span className={`mt-7 block ${BREADCRUMB_CLASS} text-right`}>{breadcrumb}</span>
             )}
             {centerSlot && <div className="mt-4">{centerSlot}</div>}
           </>
@@ -150,9 +147,7 @@ export default function NavBar({
           <div className="flex flex-col items-end gap-7">
             {menuButton}
             {breadcrumb && (
-              <span className="uppercase tracking-widest leading-3 text-xs text-right">
-                {breadcrumb}
-              </span>
+              <span className={`${BREADCRUMB_CLASS} text-right`}>{breadcrumb}</span>
             )}
           </div>
         )}
