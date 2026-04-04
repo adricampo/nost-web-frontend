@@ -40,7 +40,7 @@
 */
 html.menu-open,
 html.menu-open body {
-  background-color: var(--color-navy) !important;
+  background-color: var(--color-navy);
 }
 
 /*
