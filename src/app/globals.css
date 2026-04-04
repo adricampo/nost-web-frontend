@@ -54,7 +54,7 @@ html.menu-open body {
   top: 0;
   left: 0;
   right: 0;
-  bottom: -120px;
+  bottom: 0;
   overflow: hidden;
   margin-top: calc(-1 * env(safe-area-inset-top, 0px));
 }
