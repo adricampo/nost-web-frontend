@@ -18,7 +18,7 @@ const LABEL_MENU = 'Menu';
 const LABEL_CLOSE = 'Close';
 const LABEL_MORE_INFO = '[+] Info';
 const BTN_BASE =
-  'p-0 m-0 border-0 bg-transparent appearance-none uppercase tracking-widest cursor-pointer leading-3 text-xs';
+  'p-0 m-0 border-0 bg-transparent appearance-none uppercase tracking-widest cursor-pointer leading-3 text-xs hover:opacity-70 transition-opacity';
 
 const BREADCRUMB_CLASS = 'uppercase tracking-widest leading-3 text-xs';
 
