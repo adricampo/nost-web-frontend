@@ -25,9 +25,12 @@ export default function MenuOverlay() {
   // chrome (status bar, toolbar) adopts the navy colour.
   useEffect(() => {
     const html = document.documentElement;
-    const themeColor = document.querySelector<HTMLMetaElement>(
-      'meta[name="theme-color"]'
-    );
+    // On the landing page, never touch theme-color: iOS auto-detects the hero
+    // image colour, and a dynamic update locks the toolbar to navy even after close.
+    const isLanding = window.location.pathname === '/';
+    const themeColor = isLanding
+      ? null
+      : document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
     const originalThemeColor = themeColor?.content ?? '';
 
     if (isOpen) {
