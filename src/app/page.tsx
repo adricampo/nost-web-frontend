@@ -49,8 +49,10 @@ export default async function LandingPage() {
         style={{
           top: 'calc(-1 * env(safe-area-inset-top, 0px))',
           bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
+          paddingLeft: 80,
+          paddingRight: 36,
           paddingTop: 'calc(env(safe-area-inset-top, 0px) + 28px)',
-          paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 28px)'
+          paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 64px)'
         }}
         aria-hidden="true"
       />
