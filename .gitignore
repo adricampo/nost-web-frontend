@@ -30,6 +30,7 @@
 .claude/
 .windsurf/
 skills-lock.json
+CLAUDE.md
 
 # debug
 npm-debug.log*
