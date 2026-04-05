@@ -20,9 +20,6 @@ export default function MenuOverlay() {
   const { isOpen, close } = useMenu();
   const router = useRouter();
 
-  // Update every theme-color meta (Next.js may inject more than one) and
-  // add .menu-open to <html> so iOS Safari's toolbar and body background adopt
-  // the right colour.
   useEffect(() => {
     const html = document.documentElement;
     const setThemeColor = (color: string) => {
@@ -33,9 +30,6 @@ export default function MenuOverlay() {
         });
     };
 
-    // On the landing page: skip html.menu-open and body.overflow (the hero is
-    // position:fixed so no scroll needed). Explicitly set theme-color so iOS
-    // Safari's toolbar reverts to beige after close instead of staying navy.
     if (window.location.pathname === '/') {
       setThemeColor(isOpen ? NAVY : PAGE_BG);
       return () => {
@@ -90,10 +84,8 @@ export default function MenuOverlay() {
               paddingLeft: 80,
               paddingRight: 36,
               paddingTop: 'calc(env(safe-area-inset-top, 0px) + 28px)'
-              // paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 200px)'
             }}
           >
-            {/* Top bar: Menu label + Close button */}
             <div className="flex items-center justify-between font-apercu">
               <span className="uppercase tracking-widest text-xs leading-3 text-white">
                 {LABEL_MENU}

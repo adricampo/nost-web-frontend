@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMenu } from './Providers';
 
@@ -67,7 +66,6 @@ export default function NavBar({
       className="fixed top-0 left-0 right-0 z-[60] pointer-events-none font-apercu"
       style={{ background: pageBackground ?? 'transparent' }}
     >
-      {/* Desktop layout — 50vw split grid */}
       <div
         className="hidden md:grid md:grid-cols-[50%_1fr] items-stretch"
         style={{
@@ -78,7 +76,6 @@ export default function NavBar({
       >
         <div />
         {showInfoButton ? (
-          /* Project detail: 2-row layout — breadcrumb|MENU top, centerSlot|INFO bottom */
           <div className="pointer-events-auto flex flex-col gap-3 min-h-[52px] justify-between">
             <div className="flex justify-between items-start">
               {breadcrumb && (
@@ -97,7 +94,6 @@ export default function NavBar({
             </div>
           </div>
         ) : (
-          /* Standard layout — breadcrumb or centerSlot left, MENU right */
           <div className="pointer-events-auto flex justify-between items-start h-full">
             <div className="flex items-start">
               {centerSlot ??
@@ -110,7 +106,6 @@ export default function NavBar({
         )}
       </div>
 
-      {/* Mobile layout */}
       <div
         className="md:hidden flex flex-col pointer-events-auto"
         style={{
@@ -120,7 +115,6 @@ export default function NavBar({
         }}
       >
         {showInfoButton ? (
-          /* Project detail: MENU + INFO top-right, breadcrumb + centerSlot below */
           <>
             <div className="flex justify-end items-center gap-5">
               <button
@@ -132,22 +126,24 @@ export default function NavBar({
               {menuButton}
             </div>
             {breadcrumb && (
-              <span className={`mt-7 block ${BREADCRUMB_CLASS} text-right`}>{breadcrumb}</span>
+              <span className={`mt-7 block ${BREADCRUMB_CLASS} text-right`}>
+                {breadcrumb}
+              </span>
             )}
             {centerSlot && <div className="mt-4">{centerSlot}</div>}
           </>
         ) : centerSlot ? (
-          /* Pages with centerSlot but no info button */
           <>
             <div className="flex justify-end">{menuButton}</div>
             <div className="mt-8">{centerSlot}</div>
           </>
         ) : (
-          /* Simple pages: MENU top-right, breadcrumb below right-aligned */
           <div className="flex flex-col items-end gap-7">
             {menuButton}
             {breadcrumb && (
-              <span className={`${BREADCRUMB_CLASS} text-right`}>{breadcrumb}</span>
+              <span className={`${BREADCRUMB_CLASS} text-right`}>
+                {breadcrumb}
+              </span>
             )}
           </div>
         )}

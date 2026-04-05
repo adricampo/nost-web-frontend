@@ -44,9 +44,7 @@ export default async function ContactPage() {
       >
         <NostLogo />
       </div>
-
       <NavBar breadcrumb="Contact" pageBackground={PAGE_BG} />
-
       <main className="flex-1 pb-16 px-9 pt-[22vh] md:pl-[50vw]">
         <div className="flex flex-col gap-[10vh] md:gap-[18vh]">
           {contact?.tagline && (
@@ -54,7 +52,6 @@ export default async function ContactPage() {
               {contact.tagline}
             </p>
           )}
-
           {fields.length > 0 && (
             <div className="flex flex-col">
               {fields.map(({ label, value, href }) => (
@@ -82,7 +79,6 @@ export default async function ContactPage() {
           )}
         </div>
       </main>
-
       <FooterWrapper />
     </div>
   );

@@ -28,7 +28,6 @@ export default function ProjectCard({ project, index = 0 }: Props) {
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
       </div>
-
       <div className="mt-3 flex items-baseline justify-between gap-3 min-w-0">
         <span className="shrink-0 text-[11px] uppercase tracking-widest leading-4 self-start">
           [{project.code}]

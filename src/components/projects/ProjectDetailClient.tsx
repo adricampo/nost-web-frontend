@@ -32,12 +32,24 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
 
   return (
     <>
-      <div className="fixed left-9 z-65" style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}>
+      <div
+        className="fixed left-9 z-65"
+        style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}
+      >
         <NostLogo />
       </div>
-
       <NavBar
-        breadcrumb={<><Link href="/projects" className="hover:opacity-70 transition-opacity">Projects</Link>{` — ${project.category}`}</>}
+        breadcrumb={
+          <>
+            <Link
+              href="/projects"
+              className="hover:opacity-70 transition-opacity"
+            >
+              Projects
+            </Link>
+            {` — ${project.category}`}
+          </>
+        }
         centerSlot={
           <ProjectNavCenterSlot code={project.code} name={project.name} />
         }
@@ -46,7 +58,6 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
         showInfoButton
         onInfoClick={() => setInfoOpen(true)}
       />
-
       <main
         className="flex-1"
         style={{
@@ -62,7 +73,6 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
           <p className="text-navy-muted text-[17px]">{NO_GALLERY_MESSAGE}</p>
         )}
       </main>
-
       <ProjectInfoPanel
         project={project}
         isOpen={infoOpen}

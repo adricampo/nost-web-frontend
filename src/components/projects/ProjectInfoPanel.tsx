@@ -49,7 +49,6 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
               paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 28px)'
             }}
           >
-            {/* Mirrors NavBar 2-row structure: row1 spacer (h-3) + gap-3 + row2 (h-7) */}
             <div className="flex flex-col gap-3 shrink-0">
               <div className="h-3" />
               <div className="h-7 flex justify-end items-end">
@@ -61,7 +60,6 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
                 </button>
               </div>
             </div>
-
             <div className="flex-1 overflow-y-auto overflow-x-hidden">
               <div className="flex flex-col mt-[7.5vh] gap-2">
                 {activeFields.map(({ key, label }) => (
@@ -74,7 +72,6 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
                     </span>
                   </div>
                 ))}
-
                 {project.press && project.press.length > 0 && (
                   <div className="flex flex-row gap-6 items-start">
                     <span className="shrink-0 uppercase tracking-widest text-xs min-w-28 lg:min-w-35 font-apercu pt-0.5">
@@ -97,7 +94,6 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
                     </p>
                   </div>
                 )}
-
                 {project.description && (
                   <div className="flex gap-6 mt-30">
                     <span className="hidden lg:block shrink-0 min-w-35" />
@@ -108,7 +104,6 @@ export default function ProjectInfoPanel({ project, isOpen, onClose }: Props) {
                 )}
               </div>
             </div>
-
             <p className="uppercase tracking-widest shrink-0 text-[10px] leading-4 font-apercu">
               {IMAGE_COPYRIGHT}{' '}
               <a

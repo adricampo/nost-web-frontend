@@ -25,12 +25,13 @@ export default async function StudioPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-bg">
-      <div className="fixed left-9 z-65" style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}>
+      <div
+        className="fixed left-9 z-65"
+        style={{ top: 'calc(28px + env(safe-area-inset-top, 0px))' }}
+      >
         <NostLogo />
       </div>
-
       <NavBar breadcrumb="The Studio" pageBackground={PAGE_BG} />
-
       <main className="flex-1 pb-24" style={{ paddingTop: 120 }}>
         {studio ? (
           <>
@@ -60,7 +61,6 @@ export default async function StudioPage() {
           </div>
         )}
       </main>
-
       <FooterWrapper />
     </div>
   );

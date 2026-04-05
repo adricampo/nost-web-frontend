@@ -21,20 +21,6 @@ const COL_SPANS: Record<GalleryImage['layout'], number> = {
   xl: 24
 };
 
-/*
- * ROW_SPANS are doubled vs. the original values (small: 4→8, medium: 5→10,
- * large: 8→16, xl: 7→14). GRID_AUTO_ROWS is halved accordingly so images
- * render at exactly the same visual height as before.
- *
- * The doubling ensures that every span difference between any two layout types
- * is always even, so Math.floor(diff / 2) == diff / 2 exactly — the centering
- * offset is always a perfect integer with zero rounding error.
- *
- *  large(16) + small(8)  → diff=8  → offset=4 → 4 rows above, 4 rows below ✓
- *  large(16) + medium(10)→ diff=6  → offset=3 → 3 rows above, 3 rows below ✓
- *  xl(14)    + small(8)  → diff=6  → offset=3 → 3 rows above, 3 rows below ✓
- *  xl(14)    + medium(10)→ diff=4  → offset=2 → 2 rows above, 2 rows below ✓
- */
 const ROW_SPANS: Record<GalleryImage['layout'], number> = {
   small: 8,
   medium: 10,
@@ -42,10 +28,6 @@ const ROW_SPANS: Record<GalleryImage['layout'], number> = {
   xl: 14
 };
 
-// Each row unit = available/24 − 8px.
-// The −8px compensates for the extra gap rows introduced by doubling the row spans:
-// doubling spans from S to 2S adds (S−1) extra 16px gaps → −8px per row unit keeps
-// total image heights identical to the original /12 grid.
 const GRID_AUTO_ROWS = 'calc((100vw - 72px - 176px) / 24 - 8px)';
 
 const SIZES: Record<GalleryImage['layout'], string> = {
@@ -55,12 +37,6 @@ const SIZES: Record<GalleryImage['layout'], string> = {
   xl: '(max-width: 768px) 100vw, calc(100vw - 72px)'
 };
 
-/*
- * Compute explicit rowStart values so shorter images are vertically centred
- * within each visual row. Groups consecutive items by column usage, finds the
- * tallest span in each group, then offsets shorter items by (maxSpan−span)/2.
- * Always overrides CMS rowStart values so centering is consistent.
- */
 function computeRowStarts(images: GalleryImage[]): Map<number, number> {
   const result = new Map<number, number>();
   let currentRow = 1;
@@ -125,7 +101,6 @@ function GalleryGrid({ images }: { images: GalleryImage[] }) {
           ...(item.colStart ? { gridColumnStart: item.colStart } : {})
         };
 
-        // Spacers: only needed for desktop grid positioning, hidden on mobile
         if (!item.image) {
           return (
             <div
@@ -141,7 +116,6 @@ function GalleryGrid({ images }: { images: GalleryImage[] }) {
 
         return (
           <Fragment key={item.id}>
-            {/* Mobile (<640px): natural image sizing, full width, no cropping */}
             <div className="sm:hidden w-full">
               <Image
                 src={imageUrl}
@@ -152,8 +126,6 @@ function GalleryGrid({ images }: { images: GalleryImage[] }) {
                 sizes="100vw"
               />
             </div>
-
-            {/* sm+: fill image inside grid cell, mosaic layout preserved */}
             <div
               className={`hidden sm:block ${LAYOUT_CLASSES[item.layout]} relative overflow-hidden`}
               style={gridRowStyle}
