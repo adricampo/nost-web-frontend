@@ -67,7 +67,7 @@ export default function NavBar({
       style={{ background: pageBackground ?? 'transparent' }}
     >
       <div
-        className="hidden md:grid md:grid-cols-[50%_1fr] items-stretch"
+        className="hidden md:grid md:grid-cols-[calc(50%+10px)_1fr] items-stretch"
         style={{
           padding: pageBackground
             ? `calc(28px + env(safe-area-inset-top, 0px)) 36px ${paddingBottom ?? 65}px`
