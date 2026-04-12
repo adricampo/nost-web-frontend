@@ -45,7 +45,7 @@ export default async function ContactPage() {
         <NostLogo />
       </div>
       <NavBar breadcrumb="Contact" pageBackground={PAGE_BG} />
-      <main className="flex-1 pb-16 px-9 pt-[22vh] md:pl-[50vw]">
+      <main className="flex-1 pb-16 px-9 pt-[22vh] md:pl-[calc(50vw+10px)]">
         <div className="flex flex-col gap-[10vh] md:gap-[18vh]">
           {contact?.tagline && (
             <p className="text-[18px] md:text-[20px] lg:text-[25px] leading-[30px] font-light lg:max-w-[620px]">

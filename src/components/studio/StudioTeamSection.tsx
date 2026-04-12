@@ -9,7 +9,7 @@ interface Props {
 
 export default function StudioTeamSection({ introImage2, teamMembers }: Props) {
   return (
-    <div className="grid px-9 mb-12 grid-cols-1 lg:grid-cols-[50%_1fr]">
+    <div className="grid px-9 mb-12 grid-cols-1 lg:grid-cols-[calc(50%+10px)_1fr]">
       {introImage2 ? (
         <div className="lg:pr-20 mb-12 lg:mb-0">
           <div
