@@ -69,7 +69,10 @@ export default function PrivacyPolicyPage() {
         <NostLogo />
       </div>
       <NavBar breadcrumb="Privacy Policy" pageBackground={PAGE_BG} />
-      <main className="flex-1 pb-24 px-9 pt-[22vh] md:pl-[calc(50vw+10px)]">
+      <main
+        className="flex-1 pb-24 px-9 md:pl-[calc(50vw+10px)]"
+        style={{ paddingTop: 120 }}
+      >
         <div className="flex flex-col gap-[8vh] lg:max-w-[620px]">
           {SECTIONS.map(({ heading, paragraphs }) => (
             <div key={heading} className="flex flex-col gap-4">
