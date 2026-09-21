@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: `Get in touch with ${SITE_NAME}. Contact us by phone, email or through our social media channels.`
 };
 
-const ADDRESS = 'Carrer del Pistó 1, 08026 Barcelona';
+const ADDRESS = 'Carrer del Pistó 1, B1, 08026 Barcelona';
 
 export default async function ContactPage() {
   let contact = null;
@@ -24,6 +24,7 @@ export default async function ContactPage() {
 
   const fields = contact
     ? [
+        { label: 'A', value: ADDRESS, href: undefined },
         { label: 'T', value: contact.phone, href: undefined },
         { label: 'E', value: contact.email, href: `mailto:${contact.email}` },
         ...(contact.instagram
@@ -34,8 +35,7 @@ export default async function ContactPage() {
                 href: contact.instagram
               }
             ]
-          : []),
-        { label: 'A', value: ADDRESS, href: undefined }
+          : [])
       ]
     : [];
 

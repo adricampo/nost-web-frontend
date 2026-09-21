@@ -73,7 +73,7 @@ export default function PrivacyPolicyPage() {
         <div className="flex flex-col gap-[8vh] lg:max-w-[620px]">
           {SECTIONS.map(({ heading, paragraphs }) => (
             <div key={heading} className="flex flex-col gap-4">
-              <h2 className="text-[20px] md:text-[22px] lg:text-[26px] leading-[32px]">
+              <h2 className="font-apercu text-[18px] md:text-[20px] lg:text-[25px] leading-[30px]">
                 {heading}
               </h2>
               {paragraphs.map((paragraph, i) => (
